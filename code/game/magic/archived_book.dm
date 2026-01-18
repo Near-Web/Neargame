@@ -102,7 +102,7 @@ datum/archived_book/New(var/path)
 
 	// let's sanitize it here too!
 	for(var/tag in paper_blacklist)
-		if(findtext(dat,"<"+tag))
+		if(findtextEx(dat,"<"+tag))
 			dat = ""
 			return
 

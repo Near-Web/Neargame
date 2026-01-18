@@ -17,21 +17,21 @@
 	thanati_chance = 75
 	money = 9
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE,0),
-	list(SKILL_UNARM,0,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,5,6),
-	list(SKILL_CRAFT, 7),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_MASON,8,9),
-	list(SKILL_CLIMB, 4),
-	list(SKILL_SWIM,2,2),
-	list(SKILL_OBSERV, 2,2),
-	list(SKILL_MINE,5,5),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_UNARM,0,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,5,6),
+	alist(SKILL_CRAFT, 7),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_MASON,8,9),
+	alist(SKILL_CLIMB, 4),
+	alist(SKILL_SWIM,2,2),
+	alist(SKILL_OBSERV, 2,2),
+	alist(SKILL_MINE,5,5),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -75,18 +75,18 @@
 	thanati_chance = 25
 	money = 6
 	skill_mods = list(
-	list(SKILL_MELEE,4,4),
-	list(SKILL_UNARM,1,2),
-	list(SKILL_RANGE,2,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,2,2),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,5,5),
-	list(SKILL_SWIM,2,2),
-	list(SKILL_OBSERV, 3,3),
+	alist(SKILL_MELEE,4,4),
+	alist(SKILL_UNARM,1,2),
+	alist(SKILL_RANGE,2,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,2,2),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,5,5),
+	alist(SKILL_SWIM,2,2),
+	alist(SKILL_OBSERV, 3,3),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)

@@ -142,7 +142,6 @@
 			"You hear a faint hum of electrical equipment, and someone making a thoughtful noise.")
 			flick("forensic2",src)
 			return 0
-		return
 
 	proc/add_data(atom/A as mob|obj|turf|area)
 		//I love associative lists.

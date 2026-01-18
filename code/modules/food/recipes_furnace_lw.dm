@@ -112,7 +112,7 @@
 	items = list(
 		/obj/item/reagent_containers/food/snacks/rawmeatball,
 	)
-	result = /obj/item/reagent_containers/food/snacks/faggot
+	result = /obj/item/reagent_containers/food/snacks/meatball
 
 
 

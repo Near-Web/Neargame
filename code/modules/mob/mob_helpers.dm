@@ -1,14 +1,5 @@
 
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
-/proc/isrobot(A)
-	if(istype(A, /mob/living/silicon/robot))
-		return 1
-	return 0
-
-/proc/iscorgi(A)
-	if(istype(A, /mob/living/simple_animal/corgi))
-		return 1
-	return 0
 
 /proc/iscrab(A)
 	if(istype(A, /mob/living/simple_animal/crab))
@@ -22,11 +13,6 @@
 
 /proc/isspider(A)
 	if(istype(A, /mob/living/simple_animal/hostile/giant_spider))
-		return 1
-	return 0
-
-/proc/ismouse(A)
-	if(istype(A, /mob/living/simple_animal/mouse))
 		return 1
 	return 0
 
@@ -45,7 +31,7 @@
 		return 1
 	return 0
 
-proc/iszombie(A)
+/proc/iszombie(A)
 	if(istype(A, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = A
 		if(H.species && (H.species.name == "Zombie" || H.species.name == "Zombie Child"))
@@ -58,14 +44,14 @@ proc/iszombie(A)
 			return 1
 	return 0
 
-proc/isVampire(A)
+/proc/isVampire(A)
 	if(istype(A, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = A
 		if(H.isVampire)
 			return 1
 	return 0
 
-proc/isskeleton(A)
+/proc/isskeleton(A)
 	if(istype(A, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = A
 		if(H.species && istype(H.species, /datum/species/human/skeleton))
@@ -74,7 +60,7 @@ proc/isskeleton(A)
 			return TRUE
 	return 0
 
-proc/hasorgans(A)
+/proc/hasorgans(A)
 	return ishuman(A)
 
 /proc/hsl2rgb(h, s, l)
@@ -259,7 +245,7 @@ proc/hasorgans(A)
 		returntext += letter
 
 	return returntext
-
+/*
 /proc/stutter(phrase)
 	phrase = rhtml_decode(phrase)
 
@@ -296,8 +282,33 @@ proc/hasorgans(A)
 		split_phrase[index] = word
 
 	return sanitize(dd_list2text(split_phrase," "))
+*/
 
-proc/NoChords(t, p)
+/proc/stutter(n)
+	var/te = html_decode(n)
+	var/t = ""//placed before the message. Not really sure what it's for.
+	n = length(n)//length of the entire word
+	var/p = null
+	p = 1//1 is the start of any word
+	while(p <= n)//while P, which starts at 1 is less or equal to N which is the length.
+		var/n_letter = copytext(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
+		if (prob(80) && (ckey(n_letter) in list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z")))
+			if (prob(10))
+				n_letter = text("[n_letter]-[n_letter]-[n_letter]-[n_letter]")//replaces the current letter with this instead.
+			else
+				if (prob(20))
+					n_letter = text("[n_letter]-[n_letter]-[n_letter]")
+				else
+					if (prob(5))
+						n_letter = null
+					else
+						n_letter = text("[n_letter]-[n_letter]")
+		t = text("[t][n_letter]")//since the above is ran through for each letter, the text just adds up back to the original word.
+		p++//for each letter p is increased to find where the next letter will be.
+	return sanitize(t)
+
+
+/proc/NoChords(t, p)
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
 
@@ -313,7 +324,7 @@ proc/NoChords(t, p)
 
 	return returntext
 
-proc/Illiterate(t, p)
+/proc/Illiterate(t, p)
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
 
@@ -368,7 +379,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 		var/atom/oldeye=M.client.eye
 		var/x
-		for(x=0; x<duration, x++)
+		for(x=0; (x<duration); x++)
 			M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
 			sleep(1)
 		M.client.eye=oldeye

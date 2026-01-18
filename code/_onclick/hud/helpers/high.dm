@@ -1,6 +1,6 @@
 /obj/proc/zoom_loop(var/mob/M)
 	set waitfor = 0
-	for(var/i; i<= 40, i++)
+	for(var/i; i<= 40; i++)
 		zoom_in_out()
 		sleep(200)
 		if(i == 11)

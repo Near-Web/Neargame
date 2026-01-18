@@ -269,19 +269,19 @@
 
 		// drop leading parts
 		for(var/leader in object_leaders)
-			var/i = findtext(object, leader)
+			var/i = findtextEx(object, leader)
 			if(i)
-				object = copytext(object, i + lentext(leader))
+				object = copytext(object, i + length(leader))
 				break
 
 		// trim spaces
 		object = trim(object)
 
 		// trim punctuation
-		if(lentext(object) > 0)
-			var/final_punc = copytext(object, lentext(object))
+		if(length(object) > 0)
+			var/final_punc = copytext(object, length(object))
 			if(final_punc == "." || final_punc == "?" || final_punc == "!")
-				object = copytext(object, 1, lentext(object))
+				object = copytext(object, 1, length(object))
 
 		return object
 
@@ -289,19 +289,19 @@
 	proc/param(object)
 		// drop leading parts
 		for(var/leader in object_leaders)
-			var/i = findtext(object, leader)
+			var/i = findtextEx(object, leader)
 			if(i)
-				object = copytext(object, i + lentext(leader))
+				object = copytext(object, i + length(leader))
 				break
 
 		// trim spaces
 		object = trim(object)
 
 		// trim punctuation
-		if(lentext(object) > 0)
-			var/final_punc = copytext(object, lentext(object))
+		if(length(object) > 0)
+			var/final_punc = copytext(object, length(object))
 			if(final_punc == "." || final_punc == "?" || final_punc == "!")
-				object = copytext(object, 1, lentext(object))
+				object = copytext(object, 1, length(object))
 
 		return dd_text2list(object, ",")
 
@@ -353,14 +353,14 @@
 
 	process(object)
 		// get name & message
-		var/i = findtext(object, ",")
+		var/i = findtextEx(object, ",")
 		var/sl = 1
-		if(!i || lentext(object) < i + sl)
+		if(!i || length(object) < i + sl)
 			return "Tell who that you what?"
 
 		var/name = trim(copytext(object, 1, i))
 		object = trim(copytext(object, i + sl))
-		if(!lentext(name) || !lentext(object))
+		if(!length(name) || !length(object))
 			return "Tell who that you what?"
 
 		// find PDA

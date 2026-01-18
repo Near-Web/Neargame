@@ -5,7 +5,7 @@
 	icon_state = "dicebag"
 	storage_slots = 9
 
-	New()
+/obj/item/storage/pill_bottle/dice/New()
 		..()
 		new /obj/item/dice/d2( src )
 		new /obj/item/dice/d4( src )
@@ -65,7 +65,7 @@
 	icon_state = "d100"
 	sides = 100
 
-	New()
+/obj/item/dice/New()
 
 
 /obj/item/dice/d12

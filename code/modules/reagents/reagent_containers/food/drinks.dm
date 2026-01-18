@@ -13,135 +13,136 @@
 	volume = 50
 	var/smerd = 1
 
-	on_reagent_change()
+/obj/item/reagent_containers/food/drinks/on_reagent_change()
 		if (gulp_size < 5) gulp_size = 5
 		else gulp_size = max(round(reagents.total_volume / 5), 5)
 
-	attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/drinks/attack_self(mob/user as mob)
 		return
 
-	attack(mob/M as mob, mob/user as mob, def_zone)
-		var/datum/reagents/R = src.reagents
-		var/fillevel = gulp_size
+/obj/item/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
+	var/datum/reagents/R = src.reagents
+	var/fillevel = gulp_size
 
-		if(!R.total_volume || !R)
-			to_chat(user, "<span class='combatbold'>None of [src] left, oh no!</span>")
-			return 0
+	if(!R.total_volume || !R)
+		to_chat(user, "<span class='combatbold'>None of [src] left, oh no!</span>")
+		return 0
 
-		if(!canconsume(M, user))
-			return 0
+	if(!canconsume(M, user))
+		return 0
 
-		if(M == user)
-			if (M.zone_sel.selecting == "mouth")
-				to_chat(M, "<span class='passive'>You swallow a gulp of [src].</span>")
-				if(reagents.total_volume)
-					reagents.reaction(M, INGEST)
-					spawn(5)
-						reagents.trans_to(M, gulp_size)
-			else
-				to_chat(M, "<span class='combatbold'>I can't use that, I must drink it with my mouth.</span>")
-				return 0
-			if(ishuman(M))
-				var/mob/living/carbon/human/HH = M
-				if(HH.royalty)
-					if(smerd)
-						HH.add_event("royalty", /datum/happiness_event/misc/realcup)
-			playsound(M.loc,pick('sound/effects/glass_drink1.ogg','sound/effects/glass_drink2.ogg','sound/effects/glass_drink3.ogg','sound/effects/glass_drink4.ogg','sound/effects/glass_drink5.ogg'), rand(50,60), 0)
-			return 1
-
-		else if( istype(M, /mob/living/carbon/human) )
-
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message("<span class='combatbold'>[user]</span> <span class='combat'>attempts to feed</span> <span class='combatbold'>[M]</span> <span class='combat'>[src].</span>", 1)
-			if(!do_mob(user, M)) return
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message("<span class='combatbold'>[user]</span> <span class='combat'>feeds</span> <span class='combatbold'>[M]</span> <span class='combat'>[src].</span>", 1)
-
-			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [M.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
-			log_attack("[user.name] ([user.ckey]) fed [M.name] ([M.ckey]) with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)]) (<A HREF='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-
+	if(M == user)
+		if(istype(M,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = M
+			var/obj/item/blocked = H.check_mouth_coverage()
+			if(blocked)
+				user << "<span class='warning'>\The [blocked] is in the way!</span>"
+				return
+		if (M.zone_sel.selecting == "mouth")
+			to_chat(M, "<span class='passive'>You swallow a gulp of [src].</span>")
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)
 				spawn(5)
-					reagents?.trans_to(M, gulp_size)
+					reagents.trans_to(M, gulp_size)
+		else
+			to_chat(M, "<span class='combatbold'>I can't use that, I must drink it with my mouth.</span>")
+			return 0
+		if(ishuman(M))
+			var/mob/living/carbon/human/HH = M
+			if(HH.royalty)
+				if(smerd)
+					HH.add_event("royalty", /datum/happiness_event/misc/realcup)
+		playsound(M.loc,pick('sound/effects/glass_drink1.ogg','sound/effects/glass_drink2.ogg','sound/effects/glass_drink3.ogg','sound/effects/glass_drink4.ogg','sound/effects/glass_drink5.ogg'), rand(50,60), 0)
+		return 1
 
-			if(isrobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
-				var/mob/living/silicon/robot/bro = user
-				bro.cell.use(30)
-				var/refill = R.get_master_reagent_id()
-				spawn(600)
-					R.add_reagent(refill, fillevel)
+	else if( istype(M, /mob/living/carbon/human) )
 
-			playsound(M.loc,pick('sound/effects/glass_drink1.ogg','sound/effects/glass_drink2.ogg','sound/effects/glass_drink3.ogg','sound/effects/glass_drink4.ogg','sound/effects/glass_drink5.ogg'), rand(50,60), 0)
-			return 1
+		for(var/mob/O in viewers(world.view, user))
+			O.show_message("<span class='combatbold'>[user]</span> <span class='combat'>attempts to feed</span> <span class='combatbold'>[M]</span> <span class='combat'>[src].</span>", 1)
+		if(!do_mob(user, M)) return
+		for(var/mob/O in viewers(world.view, user))
+			O.show_message("<span class='combatbold'>[user]</span> <span class='combat'>feeds</span> <span class='combatbold'>[M]</span> <span class='combat'>[src].</span>", 1)
 
-		return 0
+		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
+		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [M.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
+		log_attack("[user.name] ([user.ckey]) fed [M.name] ([M.ckey]) with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)]) (<A HREF='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
+		if(reagents.total_volume)
+			reagents.reaction(M, INGEST)
+			spawn(5)
+				reagents?.trans_to(M, gulp_size)
 
-	afterattack(obj/target, mob/user, proximity)
-		if(!proximity) return
+		if(isrobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
+			var/mob/living/silicon/robot/bro = user
+			bro.cell.use(30)
+			var/refill = R.get_master_reagent_id()
+			spawn(600)
+				R.add_reagent(refill, fillevel)
 
-		if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
+		playsound(M.loc,pick('sound/effects/glass_drink1.ogg','sound/effects/glass_drink2.ogg','sound/effects/glass_drink3.ogg','sound/effects/glass_drink4.ogg','sound/effects/glass_drink5.ogg'), rand(50,60), 0)
+		return 1
 
-			if(!target.reagents.total_volume)
-				user << "\red [target] is empty."
-				return
-
-			if(reagents.total_volume >= reagents.maximum_volume)
-				user << "\red [src] is full."
-				return
-
-			var/trans = target.reagents.trans_to(src, target:amount_per_transfer_from_this)
-			user << "\blue You fill [src] with [trans] units of the contents of [target]."
-
-		else if(target.is_open_container()) //Something like a glass. Player probably wants to transfer TO it.
-			if(!reagents.total_volume)
-				user << "\red [src] is empty."
-				return
-
-			if(target.reagents.total_volume >= target.reagents.maximum_volume)
-				user << "\red [target] is full."
-				return
-
-
-
-			var/datum/reagent/refill
-			var/datum/reagent/refillName
-			if(isrobot(user))
-				refill = reagents.get_master_reagent_id()
-				refillName = reagents.get_master_reagent_name()
-
-			var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-			user << "\blue You transfer [trans] units of the solution to [target]."
-
-			if(isrobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
-				var/mob/living/silicon/robot/bro = user
-				var/chargeAmount = max(30,4*trans)
-				bro.cell.use(chargeAmount)
-				user << "Now synthesizing [trans] units of [refillName]..."
+	return 0
 
 
-				spawn(300)
-					reagents.add_reagent(refill, trans)
-					user << "Cyborg [src] refilled."
+/obj/item/reagent_containers/food/drinks/afterattack(obj/target, mob/user, proximity)
+	if(!proximity)
+		return
+	if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
+		if(!target.reagents.total_volume)
+			user << "\red [target] is empty."
+			return
+		if(reagents.total_volume >= reagents.maximum_volume)
+			user << "\red [src] is full."
+			return
+		var/trans = target.reagents.trans_to(src, target:amount_per_transfer_from_this)
+		user << "\blue You fill [src] with [trans] units of the contents of [target]."
+	else if(target.is_open_container()) //Something like a glass. Player probably wants to transfer TO it.
+		if(!reagents.total_volume)
+			user << "\red [src] is empty."
+			return
+		if(target.reagents.total_volume >= target.reagents.maximum_volume)
+			user << "\red [target] is full."
+			return
+
+
+
+		var/datum/reagent/refill
+		var/datum/reagent/refillName
+		if(isrobot(user))
+			refill = reagents.get_master_reagent_id()
+			refillName = reagents.get_master_reagent_name()
+
+		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
+		user << "\blue You transfer [trans] units of the solution to [target]."
+
+		if(isrobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
+			var/mob/living/silicon/robot/bro = user
+			var/chargeAmount = max(30,4*trans)
+			bro.cell.use(chargeAmount)
+			user << "Now synthesizing [trans] units of [refillName]..."
+
+
+			spawn(300)
+				reagents.add_reagent(refill, trans)
+				user << "Cyborg [src] refilled."
 
 		return
 
-	examine()
-		set src in view()
-		..()
-		if (!(usr in range(0)) && usr!=src.loc) return
-		if(!reagents || reagents.total_volume==0)
-			usr << "\blue \The [src] is empty!"
-		else if (reagents.total_volume<=src.volume/4)
-			usr << "\blue \The [src] is almost empty!"
-		else if (reagents.total_volume<=src.volume*0.66)
-			usr << "\blue \The [src] is half full!"
-		else if (reagents.total_volume<=src.volume*0.90)
-			usr << "\blue \The [src] is almost full!"
-		else
-			usr << "\blue \The [src] is full!"
+/obj/item/reagent_containers/food/drinks/examine()
+	set src in view()
+	..()
+	if (!(usr in range(0)) && usr!=src.loc) return
+	if(!reagents || reagents.total_volume==0)
+		usr << "\blue \The [src] is empty!"
+	else if (reagents.total_volume<=src.volume/4)
+		usr << "\blue \The [src] is almost empty!"
+	else if (reagents.total_volume<=src.volume*0.66)
+		usr << "\blue \The [src] is half full!"
+	else if (reagents.total_volume<=src.volume*0.90)
+		usr << "\blue \The [src] is almost full!"
+	else
+		usr << "\blue \The [src] is full!"
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -175,11 +176,11 @@
 	desc = "It's milk. White and nutritious goodness!"
 	icon_state = "milk"
 	item_state = "carton"
-	New()
-		..()
-		reagents.add_reagent("milk", 50)
-		src.pixel_x = rand(-10.0, 10)
-		src.pixel_y = rand(-10.0, 10)
+/obj/item/reagent_containers/food/drinks/milk/New()
+	..()
+	reagents.add_reagent("milk", 50)
+	src.pixel_x = rand(-10.0, 10)
+	src.pixel_y = rand(-10.0, 10)
 
 /obj/item/reagent_containers/food/drinks/flour
 	name = "flour sack"
@@ -187,74 +188,74 @@
 	icon = 'icons/obj/cooking.dmi'
 	icon_state = "flour"
 	item_state = "flour"
-	New()
-		..()
-		reagents.add_reagent("flour", 30)
-		src.pixel_x = rand(-10.0, 10)
-		src.pixel_y = rand(-10.0, 10)
+/obj/item/reagent_containers/food/drinks/flour/New()
+	..()
+	reagents.add_reagent("flour", 30)
+	src.pixel_x = rand(-10.0, 10)
+	src.pixel_y = rand(-10.0, 10)
 
 /obj/item/reagent_containers/food/drinks/soymilk
 	name = "SoyMilk"
 	desc = "It's soy milk. White and nutritious goodness!"
 	icon_state = "soymilk"
 	item_state = "carton"
-	New()
-		..()
-		reagents.add_reagent("soymilk", 50)
-		src.pixel_x = rand(-10.0, 10)
-		src.pixel_y = rand(-10.0, 10)
+/obj/item/reagent_containers/food/drinks/soymilk/New()
+	..()
+	reagents.add_reagent("soymilk", 50)
+	src.pixel_x = rand(-10.0, 10)
+	src.pixel_y = rand(-10.0, 10)
 
 /obj/item/reagent_containers/food/drinks/coffee
 	name = "Robust Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
-	New()
-		..()
-		reagents.add_reagent("coffee", 30)
-		src.pixel_x = rand(-10.0, 10)
-		src.pixel_y = rand(-10.0, 10)
+/obj/item/reagent_containers/food/drinks/coffee/New()
+	..()
+	reagents.add_reagent("coffee", 30)
+	src.pixel_x = rand(-10.0, 10)
+	src.pixel_y = rand(-10.0, 10)
 
 /obj/item/reagent_containers/food/drinks/tea
 	name = "Duke Purple Tea"
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
 	icon_state = "teacup"
 	item_state = "coffee"
-	New()
-		..()
-		reagents.add_reagent("tea", 30)
-		src.pixel_x = rand(-10.0, 10)
-		src.pixel_y = rand(-10.0, 10)
+/obj/item/reagent_containers/food/drinks/tea/New()
+	..()
+	reagents.add_reagent("tea", 30)
+	src.pixel_x = rand(-10.0, 10)
+	src.pixel_y = rand(-10.0, 10)
 
 /obj/item/reagent_containers/food/drinks/ice
 	name = "Ice Cup"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
-	New()
-		..()
-		reagents.add_reagent("ice", 30)
-		src.pixel_x = rand(-10.0, 10)
-		src.pixel_y = rand(-10.0, 10)
+/obj/item/reagent_containers/food/drinks/ice/New()
+	..()
+	reagents.add_reagent("ice", 30)
+	src.pixel_x = rand(-10.0, 10)
+	src.pixel_y = rand(-10.0, 10)
 
 /obj/item/reagent_containers/food/drinks/h_chocolate
 	name = "Dutch Hot Coco"
 	desc = "Made in Space South America."
 	icon_state = "hot_coco"
 	item_state = "coffee"
-	New()
-		..()
-		reagents.add_reagent("hot_coco", 30)
-		src.pixel_x = rand(-10.0, 10)
-		src.pixel_y = rand(-10.0, 10)
+/obj/item/reagent_containers/food/drinks/h_chocolate/New()
+	..()
+	reagents.add_reagent("hot_coco", 30)
+	src.pixel_x = rand(-10.0, 10)
+	src.pixel_y = rand(-10.0, 10)
 
 /obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "Cup Ramen"
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
-	New()
-		..()
-		reagents.add_reagent("dry_ramen", 30)
-		src.pixel_x = rand(-10.0, 10)
-		src.pixel_y = rand(-10.0, 10)
+/obj/item/reagent_containers/food/drinks/dry_ramen/New()
+	..()
+	reagents.add_reagent("dry_ramen", 30)
+	src.pixel_x = rand(-10.0, 10)
+	src.pixel_y = rand(-10.0, 10)
 
 
 /obj/item/reagent_containers/food/drinks/sillycup
@@ -263,15 +264,15 @@
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = null
 	volume = 10
-	New()
-		..()
-		src.pixel_x = rand(-10.0, 10)
-		src.pixel_y = rand(-10.0, 10)
-	on_reagent_change()
-		if(reagents.total_volume)
-			icon_state = "water_cup"
-		else
-			icon_state = "water_cup_e"
+/obj/item/reagent_containers/food/drinks/sillycup/New()
+	..()
+	src.pixel_x = rand(-10.0, 10)
+	src.pixel_y = rand(-10.0, 10)
+/obj/item/reagent_containers/food/drinks/sillycup/New/on_reagent_change()
+	if(reagents.total_volume)
+		icon_state = "water_cup"
+	else
+		icon_state = "water_cup_e"
 
 
 //////////////////////////drinkingglass and shaker//
@@ -333,23 +334,23 @@
 	drop_sound = 'sound/items/woodmugtable.ogg'
 	smerd = 1
 
-	update_icon()
-		overlays.Cut()
+/obj/item/reagent_containers/glass/wood/update_icon()
+	overlays.Cut()
 
-		if(reagents.total_volume)
-			var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
+	if(reagents.total_volume)
+		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
 
-			var/percent = round((reagents.total_volume / volume) * 100)
-			switch(percent)
-				if(0 to 9) 	filling.icon_state = "[icon_state]10"
-				if(10 to 24)	filling.icon_state = "[icon_state]25"
-				if(25 to 49)	filling.icon_state = "[icon_state]50"
-				if(50 to 74)	filling.icon_state = "[icon_state]75"
-				if(75 to 90)	filling.icon_state = "[icon_state]80"
-				if(91 to INFINITY)	filling.icon_state = "[icon_state]100"
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0 to 9) 	filling.icon_state = "[icon_state]10"
+			if(10 to 24)	filling.icon_state = "[icon_state]25"
+			if(25 to 49)	filling.icon_state = "[icon_state]50"
+			if(50 to 74)	filling.icon_state = "[icon_state]75"
+			if(75 to 90)	filling.icon_state = "[icon_state]80"
+			if(91 to INFINITY)	filling.icon_state = "[icon_state]100"
 
-			filling.icon += mix_color_from_reagents(reagents.reagent_list)
-			overlays += filling
+		filling.icon += mix_color_from_reagents(reagents.reagent_list)
+		overlays += filling
 
 
 /obj/item/reagent_containers/glass/goblet/silver
@@ -363,23 +364,23 @@
 	silver = TRUE
 	smelted_return = /obj/item/ore/refined/lw/silverlw
 
-	update_icon()
-		overlays.Cut()
+/obj/item/reagent_containers/glass/goblet/silver/update_icon()
+	overlays.Cut()
 
-		if(reagents.total_volume)
-			var/image/filling = image('icons/obj/reagentfillings.dmi', src, "goblet10")
+	if(reagents.total_volume)
+		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "goblet10")
 
-			var/percent = round((reagents.total_volume / volume) * 100)
-			switch(percent)
-				if(0 to 9) 	filling.icon_state = "goblet10"
-				if(10 to 24)	filling.icon_state = "goblet25"
-				if(25 to 49)	filling.icon_state = "goblet50"
-				if(50 to 74)	filling.icon_state = "goblet75"
-				if(75 to 90)	filling.icon_state = "goblet80"
-				if(91 to INFINITY)	filling.icon_state = "goblet100"
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0 to 9) 	filling.icon_state = "goblet10"
+			if(10 to 24)	filling.icon_state = "goblet25"
+			if(25 to 49)	filling.icon_state = "goblet50"
+			if(50 to 74)	filling.icon_state = "goblet75"
+			if(75 to 90)	filling.icon_state = "goblet80"
+			if(91 to INFINITY)	filling.icon_state = "goblet100"
 
-			filling.icon += mix_color_from_reagents(reagents.reagent_list)
-			overlays += filling
+		filling.icon += mix_color_from_reagents(reagents.reagent_list)
+		overlays += filling
 
 
 /obj/item/reagent_containers/glass/goblet/gold
@@ -391,23 +392,23 @@
 	item_worth = 40 // Golden Goblets are always in demand
 	smerd = FALSE
 	smelted_return = /obj/item/ore/refined/lw/goldlw
-	update_icon()
-		overlays.Cut()
+/obj/item/reagent_containers/glass/goblet/gold/update_icon()
+	overlays.Cut()
 
-		if(reagents.total_volume)
-			var/image/filling = image('icons/obj/reagentfillings.dmi', src, "goblet10")
+	if(reagents.total_volume)
+		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "goblet10")
 
-			var/percent = round((reagents.total_volume / volume) * 100)
-			switch(percent)
-				if(0 to 9) 	filling.icon_state = "goblet10"
-				if(10 to 24)	filling.icon_state = "goblet25"
-				if(25 to 49)	filling.icon_state = "goblet50"
-				if(50 to 74)	filling.icon_state = "goblet75"
-				if(75 to 90)	filling.icon_state = "goblet80"
-				if(91 to INFINITY)	filling.icon_state = "goblet100"
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0 to 9) 	filling.icon_state = "goblet10"
+			if(10 to 24)	filling.icon_state = "goblet25"
+			if(25 to 49)	filling.icon_state = "goblet50"
+			if(50 to 74)	filling.icon_state = "goblet75"
+			if(75 to 90)	filling.icon_state = "goblet80"
+			if(91 to INFINITY)	filling.icon_state = "goblet100"
 
-			filling.icon += mix_color_from_reagents(reagents.reagent_list)
-			overlays += filling
+		filling.icon += mix_color_from_reagents(reagents.reagent_list)
+		overlays += filling
 
 /obj/item/reagent_containers/glass/skull
 	name = "skull cup"
@@ -417,20 +418,20 @@
 	drop_sound = 'sound/items/bone_drop.ogg'
 	item_worth = 4
 
-	update_icon()
-		overlays.Cut()
+/obj/item/reagent_containers/glass/skull/update_icon()
+	overlays.Cut()
 
-		if(reagents.total_volume)
-			var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]33")
+	if(reagents.total_volume)
+		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]33")
 
-			var/percent = round((reagents.total_volume / volume) * 100)
-			switch(percent)
-				if(0 to 9)		filling.icon_state = "[icon_state]33"
-				if(10 to 19) 	filling.icon_state = "[icon_state]66"
-				if(20 to INFINITY)	filling.icon_state = "[icon_state]100"
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0 to 9)		filling.icon_state = "[icon_state]33"
+			if(10 to 19) 	filling.icon_state = "[icon_state]66"
+			if(20 to INFINITY)	filling.icon_state = "[icon_state]100"
 
-			filling.icon += mix_color_from_reagents(reagents.reagent_list)
-			overlays += filling
+		filling.icon += mix_color_from_reagents(reagents.reagent_list)
+		overlays += filling
 
 /obj/item/reagent_containers/food/drinks/mug
 	name = "cup"
@@ -438,19 +439,29 @@
 	icon_state = "big"
 	item_state = "coffee"
 
-	mesa/icon_state = "mesa"
-	lambda/icon_state = "lambda"
-	nt/icon_state = "nt"
-	power_b
-		icon_state = "power_b"
-		desc = "It has some words written on it 'Goodnight, sweet prince'"
-	power_y
-		icon_state = "power_y"
-		desc = "property of Abu"
-	med/icon_state = "med"
-	med_b/icon_state = "med_b"
-	soviet/icon_state = "soviet"
-	creeper/icon_state = "creeper"
-	cult/icon_state = "cult"
-	no1/icon_state = "no1"
-	death/icon_state = "death"
+/obj/item/reagent_containers/food/drinks/mug/mesa
+	icon_state = "mesa"
+/obj/item/reagent_containers/food/drinks/mug/lambda
+	icon_state = "lambda"
+/obj/item/reagent_containers/food/drinks/mug/nt
+	icon_state = "nt"
+/obj/item/reagent_containers/food/drinks/mug/power_b
+	icon_state = "power_b"
+	desc = "It has some words written on it 'Goodnight, sweet prince'"
+/obj/item/reagent_containers/food/drinks/mug/power_y
+	icon_state = "power_y"
+	desc = "property of Abu"
+/obj/item/reagent_containers/food/drinks/mug/med
+	icon_state = "med"
+/obj/item/reagent_containers/food/drinks/mug/med_b
+	icon_state = "med_b"
+/obj/item/reagent_containers/food/drinks/mug/soviet
+	icon_state = "soviet"
+/obj/item/reagent_containers/food/drinks/mug/creeper
+	icon_state = "creeper"
+/obj/item/reagent_containers/food/drinks/mug/cult
+	icon_state = "cult"
+/obj/item/reagent_containers/food/drinks/mug/no1
+	icon_state = "no1"
+/obj/item/reagent_containers/food/drinks/mug/death
+	icon_state = "death"

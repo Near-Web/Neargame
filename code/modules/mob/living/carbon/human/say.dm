@@ -211,14 +211,14 @@
 				sound_vol *= 0.5
 
 	sound2()
-	if(findtext(message,"gmyza"))
+	if(findtextEx(message,"gmyza"))
 		for(var/mob/living/carbon/human/M in hearers(9, src))
 			if(M != src)
 				M.add_event("gmyza",/datum/happiness_event/gmyza)
 			else
 				M.clear_event("gmyza")
 
-	if(findtext(message,"copetti"))
+	if(findtextEx(message,"copetti"))
 		for(var/mob/living/carbon/human/M in hearers(9, src))
 			if(M != src)
 				M.add_event("gmyza",/datum/happiness_event/copetti)
@@ -238,7 +238,7 @@
 
 				temp = replacetext(temp, ";", "")	//general radio
 
-				if(findtext(trim_left(temp), ":", 6, 7))	//dept radio
+				if(findtextEx(trim_left(temp), ":", 6, 7))	//dept radio
 					temp = copytext_char(trim_left(temp), 8)
 					virgin = 0
 
@@ -246,10 +246,10 @@
 					temp = copytext_char(trim_left(temp), 6)	//normal speech
 					virgin = 0
 
-				while(findtext(trim_left(temp), ":", 1, 2))	//dept radio again (necessary)
+				while(findtextEx(trim_left(temp), ":", 1, 2))	//dept radio again (necessary)
 					temp = copytext_char(trim_left(temp), 3)
 
-				if(findtext(temp, "*", 1, 2))	//emotes
+				if(findtextEx(temp, "*", 1, 2))	//emotes
 					return
 				temp = copytext_char(trim_left(temp), 1, rand(5,8))
 

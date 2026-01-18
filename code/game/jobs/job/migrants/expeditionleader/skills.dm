@@ -27,7 +27,7 @@
 	var/input = sanitize(input(usr, "Type your announcement (PEOPLE IN 14 TILES OF RANGE WILL HEAR)", "Expedition Announcement", "") as message|null)
 	if(!input)
 		return
-	if(findtext(input, "http"))
+	if(findtextEx(input, "http"))
 		return
 	for(var/mob/living/carbon/human/H in range(src, 14))
 		if(religion != H.religion)

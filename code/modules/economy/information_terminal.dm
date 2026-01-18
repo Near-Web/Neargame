@@ -22,7 +22,7 @@
 
 /obj/machinery/information_terminal/south
 	pixel_y = -32
-	New()
+/obj/machinery/information_terminal/south/New()
 		..()
 		var/matrix/M = matrix()
 		M.Turn(180)
@@ -33,7 +33,7 @@
 
 /obj/machinery/information_terminal/east
 	pixel_x = 32
-	New()
+/obj/machinery/information_terminal/east/New()
 		..()
 		var/matrix/M = matrix()
 		M.Turn(90)
@@ -41,7 +41,7 @@
 
 /obj/machinery/information_terminal/west
 	pixel_x = -32
-	New()
+/obj/machinery/information_terminal/west/New()
 		..()
 		var/matrix/M = matrix()
 		M.Turn(-90)

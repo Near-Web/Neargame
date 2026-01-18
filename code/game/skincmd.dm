@@ -7,7 +7,7 @@
 /mob/verb/skincmd(data as text)
 	set hidden = 1
 
-	var/ref = copytext(data, 1, findtext(data, ";"))
+	var/ref = copytext(data, 1, findtextEx(data, ";"))
 	if (src.skincmds[ref] != null)
 		var/obj/a = src.skincmds[ref]
-		a.SkinCmd(src, copytext(data, findtext(data, ";") + 1))
+		a.SkinCmd(src, copytext(data, findtextEx(data, ";") + 1))

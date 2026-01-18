@@ -278,7 +278,7 @@ turf/proc/ul_UpdateLight()
 	if(!isarea(CurrentArea) || !CurrentArea.ul_Lighting)
 		return
 
-	var/LightingTag = copytext(CurrentArea.tag, 1, findtext(CurrentArea.tag, ":UL")) + ":UL[ul_GetRed()]_[ul_GetGreen()]_[ul_GetBlue()]"
+	var/LightingTag = copytext(CurrentArea.tag, 1, findtextEx(CurrentArea.tag, ":UL")) + ":UL[ul_GetRed()]_[ul_GetGreen()]_[ul_GetBlue()]"
 
 	if(CurrentArea.tag != LightingTag)
 		var/area/NewArea = locate(LightingTag)
@@ -351,7 +351,7 @@ area/proc/ul_Prep()
 	if(!tag)
 		tag = "[type]"
 	if(ul_Lighting)
-		if(!findtext(tag,":UL"))
+		if(!findtextEx(tag,":UL"))
 			ul_Light()
 	//world.log << tag
 

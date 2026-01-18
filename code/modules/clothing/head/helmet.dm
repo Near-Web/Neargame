@@ -317,11 +317,10 @@
 
 /obj/item/clothing/head/helmet/sechelm/emp_act(severity)
 	if(network_used)
-		if(1.0)
-			if(src.camera)
-				src.camera.network = list()
-				cameranet.removeCamera(src.camera)
-				to_chat(usr, "<span class='warning'>[src.name] bzzz.</span>")
+		if(src.camera)
+			src.camera.network = list()
+			cameranet.removeCamera(src.camera)
+			to_chat(usr, "<span class='warning'>[src.name] bzzz.</span>")
 	else ..()
 
 
@@ -477,39 +476,39 @@
 	icon_action_button = "action_hardhat"
 	var/on = 0
 
-	attack_self(mob/user)
-		if(!isturf(user.loc))
-			user << "You cannot turn the light on while in this [user.loc]" //To prevent some lighting anomalities.
-			return
-		on = !on
+/obj/item/clothing/head/helmet/soulbreaker/attack_self(mob/user)
+	if(!isturf(user.loc))
+		user << "You cannot turn the light on while in this [user.loc]" //To prevent some lighting anomalities.
+		return
+	on = !on
+	user.update_inv_head(TRUE)
+	icon_state = "soulbreaker[on]"
+	item_state = "soulbreaker[on]"
+	user.update_inv_head(0)
+	if(on)
+		set_light(2, 2,"#f4fad4")
 		user.update_inv_head(TRUE)
+	else
+		set_light(0)
+
+/obj/item/clothing/head/helmet/soulbreaker/pickup(mob/user)
+	if(on)
+		set_light(2, 2,"#f4fad4")
+		user.update_inv_head(TRUE)
+
+/obj/item/clothing/head/helmet/soulbreaker/dropped(mob/user)
+	if(on)
+		set_light(2, 2,"#f4fad4")
+
+/obj/item/clothing/head/helmet/soulbreaker/on_enter_storage(mob/user)
+	if(on)
+		set_light(0)
+		on = 0
 		icon_state = "soulbreaker[on]"
 		item_state = "soulbreaker[on]"
-		user.update_inv_head(0)
-		if(on)
-			set_light(2, 2,"#f4fad4")
-			user.update_inv_head(TRUE)
-		else
-			set_light(0)
-
-	pickup(mob/user)
-		if(on)
-			set_light(2, 2,"#f4fad4")
-			user.update_inv_head(TRUE)
-
-	dropped(mob/user)
-		if(on)
-			set_light(2, 2,"#f4fad4")
-
-	on_enter_storage(mob/user)
-		if(on)
-			set_light(0)
-			on = 0
-			icon_state = "soulbreaker[on]"
-			item_state = "soulbreaker[on]"
-			user.update_inv_head(TRUE)
-		..()
-		return
+		user.update_inv_head(TRUE)
+	..()
+	return
 
 /obj/item/clothing/head/helmet/thunderdome
 	name = "\improper Thunderdome helmet"

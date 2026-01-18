@@ -5,7 +5,6 @@
 
 /mob/living/carbon/human/verb/suicide()
 	set hidden = 1
-	return
 
 	if (stat == DEAD)
 		src << "You're already dead!"
@@ -91,7 +90,6 @@
 
 /mob/living/carbon/brain/verb/suicide()
 	set hidden = 1
-	return
 
 	if (stat == 2)
 		src << "You're already dead!"
@@ -116,7 +114,6 @@
 
 /mob/living/carbon/monkey/verb/suicide()
 	set hidden = 1
-	return
 
 	if (stat == 2)
 		src << "You're already dead!"
@@ -144,7 +141,6 @@
 
 /mob/living/silicon/ai/verb/suicide()
 	set hidden = 1
-	return
 
 	if (stat == 2)
 		src << "You're already dead!"
@@ -165,7 +161,6 @@
 
 /mob/living/silicon/robot/verb/suicide()
 	set hidden = 1
-	return
 
 	if (stat == 2)
 		src << "You're already dead!"

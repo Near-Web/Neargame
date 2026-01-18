@@ -564,7 +564,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	var/browser_options = winget(src, null, "browser-options")
 
-	if(findtext(browser_options, "devtools"))
+	if(findtextEx(browser_options, "devtools"))
 		// Disable the dev tools.
 		winset(src, null, list("browser-options" = "-devtools"))
 		message_admins("[key_name_admin(usr)] has disabled Browser Inspection.")

@@ -93,7 +93,7 @@ dmifont
 	New()
 #if DM_VERSION >= 455
 		if(istext(world.icon_size))
-			var/i = findtext(world.icon_size, "x")
+			var/i = findtextEx(world.icon_size, "x")
 			icon_width = text2num(copytext(world.icon_size, 1, i))
 			icon_height = text2num(copytext(world.icon_size, i+1))
 		else
@@ -179,22 +179,22 @@ dmifont
 // upgrade .dm file if called for
 #ifdef DMIFONTS_UPGRADE
 			var/shortname="[type]"
-			var/i=findtext(shortname,"/",2)
-			var/j=findtext(shortname,"/",i+1)
+			var/i=findtextEx(shortname,"/",2)
+			var/j=findtextEx(shortname,"/",i+1)
 			while(i && j)
 				i=j++
-				j=findtext(shortname,"/",j)
+				j=findtextEx(shortname,"/",j)
 			if(i) shortname=copytext(shortname,i+1)+".dm"
 			if(fexists(shortname))
 				var/txt=file2text(shortname)
-				if(!findText(txt,"\tdefined"))
+				if(!findtextEx(txt,"\tdefined"))
 					world.log << "Upgrading [shortname]"
 					var/eol
-					i=findText(txt,"\tmetrics")
+					i=findtextEx(txt,"\tmetrics")
 					j=i
 					while(j>1) if(text2ascii(txt,--j)>13 || (j<i-1 && text2ascii(txt,j)==text2ascii(txt,i-1))) break
 					eol=copytext(txt,j+1,i)
-					j=findtext(txt,")"+eol,i)
+					j=findtextEx(txt,")"+eol,i)
 					if(j)
 						var/deftxt="\tdefined = list("
 						// ASCII 255 doesn't output properly because it's used for some special DM characters
@@ -313,10 +313,10 @@ dmifont
 		if(flags&DF_INCLUDE_AC)
 			return GetWidth(copytext(lastlines,GetLastLineIndex(lastlines)),DF_INCLUDE_AC)
 		var/i=1
-		var/j=findtext(lastlines,"\n")
+		var/j=findtextEx(lastlines,"\n")
 		while(j)
 			i=++j
-			j=findtext(lastlines,"\n",j)
+			j=findtextEx(lastlines,"\n",j)
 		if(i>length(lastlines)) return 0
 		.=i>1?0:lastindent
 		.+=GetWidth(copytext(lastlines,i))+GetCharCWidth(text2ascii(lastlines,length(lastlines)))
@@ -326,10 +326,10 @@ dmifont
 
 	proc/CountLines(text)
 		.=1
-		var/i=findtext(text,"\n")
+		var/i=findtextEx(text,"\n")
 		while(i)
 			++.
-			i=findtext(text,"\n",i+1)
+			i=findtextEx(text,"\n",i+1)
 
 	proc/CountLinesConstrained(text, width=-1, flags=0, firstline=0)
 		return CountLines(GetLines(text,width,flags,firstline))
@@ -342,13 +342,13 @@ dmifont
 		var/j
 		var/line1=1
 		do
-			if(width<0 || (flags&DF_WRAP_NONE)) j=findtext(text,"\n",i)
+			if(width<0 || (flags&DF_WRAP_NONE)) j=findtextEx(text,"\n",i)
 			else j=GetLineUpTo(text,line1?(width-firstline):width,i,(flags&DF_WRAP_MASK)==DF_WRAP_ONELINE,flags)
 			line1=0
 			if(j && j<=length(text))
 				var/ch=text2ascii(text,j)
 				if(ch>10 && ch!=32) return 0
-			i=j?(GetNextIndex(text,((flags&DF_WRAP_MASK)==DF_WRAP_ONELINE)?findtext(text,"\n",j):j)):0
+			i=j?(GetNextIndex(text,((flags&DF_WRAP_MASK)==DF_WRAP_ONELINE)?findtextEx(text,"\n",j):j)):0
 		while(i)
 		return 1
 
@@ -359,13 +359,13 @@ dmifont
 		var/line1=1
 		do
 			++nlines
-			if(width<0 || (flags&DF_WRAP_NONE)) j=findtext(text,"\n",i)
+			if(width<0 || (flags&DF_WRAP_NONE)) j=findtextEx(text,"\n",i)
 			else j=GetLineUpTo(text,line1?(width-firstline):width,i,(flags&DF_WRAP_MASK)==DF_WRAP_ONELINE,flags)
 			line1=0
 			if(j && j<=length(text))
 				var/ch=text2ascii(text,j)
 				if(ch>10 && ch!=32) return 0
-			i=j?(GetNextIndex(text,((flags&DF_WRAP_MASK)==DF_WRAP_ONELINE)?findtext(text,"\n",j):j)):0
+			i=j?(GetNextIndex(text,((flags&DF_WRAP_MASK)==DF_WRAP_ONELINE)?findtextEx(text,"\n",j):j)):0
 			if(nlines>=maxlines && maxlines>=0) return !i
 		while(i)
 		return 1
@@ -378,7 +378,7 @@ dmifont
 		var/startofline=1		// for full justification
 		do
 			++nlines
-			if(width<0 || (flags&DF_WRAP_MASK)==DF_WRAP_NONE) j=findtext(text,"\n",i)
+			if(width<0 || (flags&DF_WRAP_MASK)==DF_WRAP_NONE) j=findtextEx(text,"\n",i)
 			else j=GetLineUpTo(text,line1?(width-firstline):width,i,(flags&DF_WRAP_ELLIPSIS) && ((flags&DF_WRAP_NONE) || (maxlines>=0 && nlines>=maxlines)),flags)
 			flags&=~DF_BREAK_FIRST
 			if(j)
@@ -395,7 +395,7 @@ dmifont
 						text=copytext(text,1,j)+"..."+copytext(text,j)
 						j+=3
 			line1=0
-			i=j?(GetNextIndex(text,((flags&DF_WRAP_MASK)==DF_WRAP_ONELINE)?findtext(text,"\n",j):j)):0
+			i=j?(GetNextIndex(text,((flags&DF_WRAP_MASK)==DF_WRAP_ONELINE)?findtextEx(text,"\n",j):j)):0
 			// justification
 			if(i && startofline<j && width>=0 && (flags&DF_JUSTIFY)==DF_JUSTIFY)
 				var/widthleft=width-GetWidth(copytext(text,startofline,j),flags)
@@ -477,25 +477,25 @@ dmifont
 		var/line1=1
 		do
 			++nlines
-			if(width<0 || (flags&DF_WRAP_MASK)==DF_WRAP_NONE) j=findtext(text,"\n",i)
+			if(width<0 || (flags&DF_WRAP_MASK)==DF_WRAP_NONE) j=findtextEx(text,"\n",i)
 			else j=GetLineUpTo(text,line1?(width-firstline):width,i,(flags&DF_WRAP_ELLIPSIS) && ((flags&DF_WRAP_NONE) || (maxlines>=0 && nlines>=maxlines)),flags)
 			flags&=~DF_BREAK_FIRST
 			line1=0
-			i=j?(GetNextIndex(text,((flags&DF_WRAP_MASK)==DF_WRAP_ONELINE)?findtext(text,"\n",j):j)):0
+			i=j?(GetNextIndex(text,((flags&DF_WRAP_MASK)==DF_WRAP_ONELINE)?findtextEx(text,"\n",j):j)):0
 			if(nlines>=maxlines && maxlines>=0)
 				return i
 		while(i)
 		return 0
 
 	proc/GetLine(text,index=1)
-		return copytext(text,1,index?findtext(text,"\n",index):0)
+		return copytext(text,1,index?findtextEx(text,"\n",index):0)
 	proc/GetLastLineIndex(text,index=1)
 		if(!index) return 0
-		var/i=findtext(text,"\n",index)
+		var/i=findtextEx(text,"\n",index)
 		while(i)
 			index=i
 			if(++index>length(text)) return 0
-			i=findtext(text,"\n",index)
+			i=findtextEx(text,"\n",index)
 		return index
 
 	// find the next starting point after a break
@@ -556,7 +556,7 @@ dmifont
 		if(!(flags&DF_NO_FORMAT)) text=GetLines(text,width,flags&~DF_SET_WIDTH,firstline,maxlines,leftover)
 		do
 			++nlines
-			j=findtext(text,"\n",i)
+			j=findtextEx(text,"\n",i)
 			indices+=i
 			indices+=j
 			if(j) i=j+1

@@ -1087,7 +1087,7 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	if(be_random_name)
 		real_name = random_name(gender,species)
 
-	var/firstspace = findtext(real_name, " ")
+	var/firstspace = findtextEx(real_name, " ")
 	var/name_length = length(real_name)
 	if(!firstspace)	//we need a surname
 		real_name += " [pick(last_names)]"
@@ -1099,7 +1099,7 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 			real_name = random_name(gender,species)
 			break
 	if(global.in_character_filter.len) //If you name yourself hitler you're getting a random name.
-		if(findtext(real_name, config.ic_filter_regex))
+		if(findtextEx(real_name, config.ic_filter_regex))
 			real_name = random_name(gender,species)
 
 	character.real_name = real_name

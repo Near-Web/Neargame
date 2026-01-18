@@ -9,12 +9,12 @@ var/list/datum/succubus/succubi = list()
 	..()
 	succubi.Add(src)
 
-mob/proc/succubus_mood(var/mob/living/carbon/human/target)
+/mob/proc/succubus_mood(var/mob/living/carbon/human/target)
 	var/datum/happiness_event/misc/needsex/E = new()
 	E.description = "<span class='badmood'>• I NEED TO FUCK [uppertext(src.real_name)]!</span>\n"
 	target.add_precreated_event("[src.real_name]", E)
 
-mob/proc/succubus_enslave(var/mob/living/carbon/human/target, var/silent = FALSE)
+/mob/proc/succubus_enslave(var/mob/living/carbon/human/target, var/silent = FALSE)
 	if(!src?.mind?.succubus)
 		return
 	if(target.stat == DEAD) //shouldn't happen

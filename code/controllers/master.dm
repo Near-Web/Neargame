@@ -627,15 +627,24 @@ var/global/_announced_start = FALSE
 			. = "<font color='#eb4034'><b>[current_map_cpu]</b></font>"
 
 /datum/controller/master/StartLoadingMap()
+	if(map_loading)
+		admin_notice("<span class='danger'>Another map is attempting to be loaded before first map released lock.  Delaying.</span>", R_DEBUG)
+	else
+		admin_notice("<span class='danger'>Map is now being built.  Locking.</span>", R_DEBUG)
+
 	//disallow more than one map to load at once, multithreading it will just cause race conditions
 	while(map_loading)
 		stoplag()
 	for(var/S in subsystems)
 		var/datum/controller/subsystem/SS = S
 		SS.StartLoadingMap()
+	// ZAS might displace objects as the map loads if an air tick is processed mid-load.
+	air_processing_killed = TRUE
 	map_loading = TRUE
 
 /datum/controller/master/StopLoadingMap(bounds = null)
+	admin_notice("<span class='danger'>Map is finished.  Unlocking.</span>", R_DEBUG)
+	air_processing_killed = FALSE
 	map_loading = FALSE
 	for(var/S in subsystems)
 		var/datum/controller/subsystem/SS = S

@@ -42,7 +42,7 @@
 
 	for(var/V in O.autopsy_data)
 		var/datum/autopsy_data/W = O.autopsy_data[V]
-
+/*
 		if(!W.pretend_weapon)
 			/*
 			// the more hits, the more likely it is that we get the right weapon type
@@ -54,7 +54,7 @@
 				W.pretend_weapon = W.weapon
 			else
 				W.pretend_weapon = pick("mechanical toolbox", "wirecutters", "revolver", "crowbar", "fire extinguisher", "tomato soup", "oxygen tank", "emergency oxygen tank", "laser", "bullet")
-
+*/
 
 		var/datum/autopsy_data_scanner/D = wdata[V]
 		if(!D)

@@ -871,7 +871,7 @@
 		return
 	src.occupant = new /mob/living/silicon/ai(src,malf.laws,null,1)
 	src.occupant.adjustOxyLoss(malf.getOxyLoss())
-	if(!findtext(src.occupant.name,"APC Copy"))
+	if(!findtextEx(src.occupant.name,"APC Copy"))
 		src.occupant.name = "[malf.name] APC Copy"
 	if(malf.parent)
 		src.occupant.parent = malf.parent

@@ -1259,6 +1259,11 @@
 		else
 			to_chat(checker, "<span class='passive'> [self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].")
 
+/mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
+	if((species.flags & NO_SLIP) || (shoes && (shoes.flags & NOSLIP)))
+		return 0
+	..(slipped_on,stun_duration)
+
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 
 	if(new_species == "Skeleton" && ismonster(src))
@@ -1432,7 +1437,7 @@
 				if(HEADD.brained)
 					status += "<span class='magentatext'>CRACK</span>"
 			if(status.len)
-				msg += "<span class='statustext'>¤ [capitalize(org.display_name)]: [english_listt(status)]</span>\n"
+				msg += "<span class='statustext'>¤ [capitalize(org.display_name)]: [english_list(status)]</span>\n"
 			else
 				var/ok_msg = "OK"
 				if(isrev)
@@ -1461,9 +1466,19 @@
 /mob/living/carbon/human/has_eyes()
 	if(internal_organs_by_name["eyes"])
 		var/datum/organ/internal/eyes = internal_organs_by_name["eyes"]
-		if(eyes && istype(eyes) && !eyes.status & ORGAN_CUT_AWAY)
+		if (eyes && istype(eyes) && eyes.status & !ORGAN_CUT_AWAY)
 			return 1
 	return 0
+
+/mob/living/proc/check_has_mouth()
+	return 1
+
+/mob/living/carbon/human/check_has_mouth()
+	if(organs_by_name["mouth"])
+		var/datum/organ/external/mouth = organs_by_name["mouth"]
+		if(mouth && istype(mouth))
+		return 0
+	return 1
 
 /mob/living/carbon/human/print_flavor_text()
 	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)

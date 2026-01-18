@@ -418,6 +418,9 @@
 			user.client.statpanel = T.name
 	return
 
+/mob/proc/TurfAdjacent(var/turf/T)
+	return T.AdjacentQuick(src)
+
 /*
 	Misc helpers
 

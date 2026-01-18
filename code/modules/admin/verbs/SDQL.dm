@@ -363,8 +363,8 @@
 	else if(copytext(text, 1, 2) == "/")
 		return text2path(text)
 	else
-		if(findtext(text, "."))
-			var/split = findtext(text, ".")
+		if(findtextEx(text, "."))
+			var/split = findtextEx(text, ".")
 			var/v = copytext(text, 1, split)
 
 			if((v in object.vars) && istype(object.vars[v], /datum))

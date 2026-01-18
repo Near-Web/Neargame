@@ -18,7 +18,7 @@
 		if(lowertext(result["STATUS"]) == "200 ok")
 			var/content = file2text(result["CONTENT"])
 
-			var/pos = findtext(content, " ")
+			var/pos = findtextEx(content, " ")
 			var/code
 			var/account = ""
 
@@ -84,7 +84,7 @@
 		if(lowertext(result["STATUS"]) == "200 ok")
 			var/content = file2text(result["CONTENT"])
 
-			var/pos = findtext(content, " ")
+			var/pos = findtextEx(content, " ")
 			var/code
 			var/account = ""
 

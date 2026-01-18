@@ -89,13 +89,13 @@
 				switch(src.scan.function)
 					if("data_mutate")
 						if (src.modify)
-							if (!( findtext(src.scan.data, "-", 1, null) ))
+							if (!( findtextEx(src.scan.data, "-", 1, null) ))
 								if ((src.modify.data && src.scan.data && length(src.modify.data) >= length(src.scan.data)))
 									src.modify.data = text("[][]", src.scan.data, (length(src.modify.data) > length(src.scan.data) ? copytext(src.modify.data, length(src.scan.data) + 1, length(src.modify.data) + 1) : null))
 								else
 									src.temp = "Disk Failure: Cannot examine data! (Null or wrong format)"
 							else
-								var/d = findtext(src.modify.data, "-", 1, null)
+								var/d = findtextEx(src.modify.data, "-", 1, null)
 								var/t = copytext(src.modify.data, d + 1, length(src.modify.data) + 1)
 								d = text2num(copytext(1, d, null))
 								if ((d && t && src.modify.data && src.scan.data && length(src.modify.data) >= (length(t) + d - 1) ))

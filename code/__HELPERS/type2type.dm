@@ -207,7 +207,7 @@ proc/tg_list2text(list/list, glue=",")
 	var/last_found = 1
 	var/found
 	do
-		found = findtext(text, delimiter, last_found, 0)
+		found = findtextEx(text, delimiter, last_found, 0)
 		. += copytext(text, last_found, found)
 		last_found = found + delim_len
 	while(found)
@@ -225,7 +225,7 @@ proc/tg_list2text(list/list, glue=",")
 			break
 		loops++
 
-		findPosition = findtext(text, separator, searchPosition, 0)
+		findPosition = findtextEx(text, separator, searchPosition, 0)
 		var/buggyText = copytext(text, searchPosition, findPosition)
 		if(!withinList || (buggyText in withinList)) textList += "[buggyText]"
 		if(!findPosition) return textList

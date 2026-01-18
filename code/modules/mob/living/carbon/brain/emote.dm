@@ -2,11 +2,11 @@
 	if(!(container && istype(container, /obj/item/device/mmi)))//No MMI, no emotes
 		return
 
-	if (findtext(act, "-", 1, null))
-		var/t1 = findtext(act, "-", 1, null)
+	if (findtextEx(act, "-", 1, null))
+		var/t1 = findtextEx(act, "-", 1, null)
 		act = copytext(act, 1, t1)
 
-	if(findtext(act,"s",-1) && !findtext(act,"_",-2))//Removes ending s's unless they are prefixed with a '_'
+	if(findtextEx(act,"s",-1) && !findtextEx(act,"_",-2))//Removes ending s's unless they are prefixed with a '_'
 		act = copytext(act,1,length(act))
 
 	if(src.stat == DEAD)

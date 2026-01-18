@@ -57,7 +57,7 @@ GLOBAL_GETTER(iconCache, /savefile, new("data/iconCache.sav"))
 	// Arguments are in the form "param[paramname]=thing"
 	var/list/params = list()
 	for(var/key in href_list)
-		if(length(key) > 7 && findtext(key, "param")) // 7 is the amount of characters in the basic param key template.
+		if(length(key) > 7 && findtextEx(key, "param")) // 7 is the amount of characters in the basic param key template.
 			var/param_name = copytext(key, 7, -1)
 			var/item       = href_list[key]
 
@@ -111,8 +111,8 @@ GLOBAL_GETTER(iconCache, /savefile, new("data/iconCache.sav"))
 	set name = ".csize"
 	var/fsize = max(0,prefs.font_size)
 	var/csize = winget(src, "browseroutput", "size")
-	var/y = text2num(copytext(csize, 1, findtext(csize, "x"))) - 5
-	var/x = text2num(copytext(csize, findtext(csize, "x")+1, 0)) - 40
+	var/y = text2num(copytext(csize, 1, findtextEx(csize, "x"))) - 5
+	var/x = text2num(copytext(csize, findtextEx(csize, "x")+1, 0)) - 40
 	src << output(list2params(list(fsize)), "browseroutput:TextSize")
 	src << output(list2params(list(x)), "browseroutput:SetSize")
 	src << output(list2params(list(y)), "browseroutput:SetWidth")

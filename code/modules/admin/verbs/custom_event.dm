@@ -19,9 +19,9 @@
 
 	custom_event_msg = input
 
-	world << "<h1 class='alert'>ÈÂÎÍÒ ÏÎÑÎÍÛ</h1>"
-	world << "<h2 class='alert'>Ñóòü:</h2>"
-	world << "<span class='alert'>[sanitize_uni(custom_event_msg)]</span>"
+	world << "<h1 class='alert'>ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h1>"
+	world << "<h2 class='alert'>ï¿½ï¿½ï¿½ï¿½:</h2>"
+	world << "<span class='alert'>[sanitize(custom_event_msg)]</span>"
 	world << "<br>"
 
 // normal verb for players to view info

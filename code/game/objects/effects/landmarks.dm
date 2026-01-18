@@ -2,9 +2,11 @@
 	name = "landmark"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
-	anchored = 1.0
-	unacidable = 1
-	flammable = 0
+	anchored = TRUE
+	unacidable = TRUE
+	simulated = FALSE
+	invisibility = INVISIBILITY_MAXIMUM
+	var/delete_me = FALSE
 
 /obj/effect/landmark/New()
 	. = ..()
@@ -103,12 +105,12 @@
 	landmarks_list |= src
 	return 1
 
-/obj/effect/landmark/Destroy()
-	. = ..()
-	landmarks_list -= src
-	loc = null
-	tag = null
-	qdel(reagents)
+/obj/effect/landmark/Destroy(var/force = FALSE)
+	if(delete_me || force)
+		landmarks_list -= src
+		return ..()
+	return QDEL_HINT_LETMELIVE
+
 
 
 /obj/effect/landmark/start

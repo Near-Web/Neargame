@@ -273,8 +273,8 @@
 	M.Paralyse(1)
 	M.Weaken(1)
 	M.Stun(1)
-	if (M:reagents.get_reagent_amount("epinephrine") < 5)
-		M:reagents.add_reagent("epinephrine", 5)
+	if (M.reagents.get_reagent_amount("epinephrine") < 5)
+		M.reagents.add_reagent("epinephrine", 5)
 	return
 
 /obj/machinery/sleeper/proc/toggle_d_filter()

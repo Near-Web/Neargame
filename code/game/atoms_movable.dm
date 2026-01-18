@@ -23,13 +23,46 @@
 	var/obj/item/storage/storage_ui
 
 	var/movable_flags
+	var/auto_init = 1
 
-/atom/movable/Bump(var/atom/A as mob|obj|turf|area, yes)
+
+/atom/movable/New()
+	..()
+	if(auto_init && ticker && ticker.current_state == GAME_STATE_PLAYING)
+		if(SScreation && SScreation.map_loading) // If a map is being loaded, newly created objects need to wait for it to finish.
+			SScreation.atoms_needing_initialize += src
+		else
+			initialize()
+
+/atom/movable/Destroy()
+	. = ..()
+	if(reagents)
+		qdel(reagents)
+		reagents = null
+	for(var/atom/movable/AM in contents)
+		qdel(AM)
+	var/turf/un_opaque
+	if(opacity && isturf(loc))
+		un_opaque = loc
+
+	loc = null
+	if(un_opaque)
+	//	un_opaque.recalc_atom_opacity()
+	if (pulledby)
+		if (pulledby.pulling == src)
+			pulledby.pulling = null
+		pulledby = null
+
+/atom/movable/proc/initialize()
+	if(QDELETED(src))
+		crash_with("GC: -- [type] had initialize() called after qdel() --")
+
+/atom/movable/Bump(var/atom/A, yes)
 	if(src.throwing)
 		src.throw_impact(A)
 		src.throwing = 0
 
-	spawn( 0 )
+	spawn(0)
 		if ((A && yes))
 			A.last_bumped = world.time
 			A.Bumped(src)
@@ -37,44 +70,9 @@
 	..()
 	return
 
-/atom/Destroy()
-	if(reagents)
-		qdel(reagents)
-		reagents = null
-	. = ..()
-
-/atom/movable/Destroy()
-	. = ..()
-	for(var/atom/movable/AM in src)
-		qdel(AM)
-
-	forceMove(null)
-	if (pulledby)
-		if (pulledby.pulling == src)
-			pulledby.pulling = null
-		pulledby = null
-
-/atom/movable/proc/initialize()
-	SHOULD_CALL_PARENT(TRUE)
-
-	if(QDELETED(src))
-		crash_with("GC: -- [type] had initialize() called after qdel() --")
-
-/image/Destroy()
-	..()
-	return QDEL_HINT_HARDDEL_NOW
-
-/atom/movable/proc/entered_with_container(var/atom/old_loc)
-	return
-
 /atom/movable/proc/forceMove(atom/destination)
-
-	if(QDELETED(src) && !QDESTROYING(src) && !isnull(destination))
-		CRASH("Attempted to forceMove a QDELETED [src] out of nullspace!!!")
-
 	if(loc == destination)
-		return FALSE
-
+		return 0
 	var/is_origin_turf = isturf(loc)
 	var/is_destination_turf = isturf(destination)
 	// It is a new area if:
@@ -101,31 +99,26 @@
 					AM.Crossed(src)
 			if(is_new_area && is_destination_turf)
 				destination.loc.Entered(src, origin)
+	return 1
 
-	. = TRUE
+//called when src is thrown into hit_atom
+/atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
+	if(istype(hit_atom,/mob/living))
+		var/mob/living/M = hit_atom
+		M.hitby(src,speed)
 
-	// observ
-	if(!loc && event_listeners?[/decl/observ/moved])
-		raise_event_non_global(/decl/observ/moved, origin, null)
-	/*
-	// lighting
-	if (light_source_solo)
-		light_source_solo.source_atom.update_light()
-	else if (light_source_multi)
-		var/datum/light_source/L
-		var/thing
-		for (thing in light_source_multi)
-			L = thing
-			L.source_atom.update_light()
+	else if(isobj(hit_atom))
+		var/obj/O = hit_atom
+		if(!O.anchored)
+			step(O, src.last_move)
+		O.hitby(src,speed)
 
-	if(buckled_mob)
-		if(isturf(loc))
-			buckled_mob.glide_size = glide_size // Setting loc apparently does animate with glide size.
-			buckled_mob.forceMove(loc)
-			refresh_buckled_mob(0)
-		else
-			unbuckle_mob()
-	*/
+	else if(isturf(hit_atom))
+		src.throwing = 0
+		var/turf/T = hit_atom
+		T.hitby(src,speed)
+
+//decided whether a movable atom being thrown can pass through the turf it is in.
 /atom/movable/Move(...)
 
 	var/old_loc = loc
@@ -243,24 +236,27 @@
 			if(istype(A,/mob/living))
 				if(A:lying) continue
 				src.throw_impact(A,speed)
-				if(src.throwing == 1)
-					src.throwing = 0
 			if(isobj(A))
-				if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
-					src.throw_impact(A,speed)
-					src.throwing = 0
-
+				if(!A.density || A.throwpass)
+					continue
+				// Special handling of windows, which are dense but block only from some directions
+				//if(istype(A, /obj/structure/window))
+				//	var/obj/structure/window/W = A
+					//if (!W.is_full_window() && !(turn(src.last_move, 180) & A.dir))
+						//continue
+				// Same thing for (closed) windoors, which have the same problem
+				else if(istype(A, /obj/machinery/door/window) && !(turn(src.last_move, 180) & A.dir))
+					continue
+				src.throw_impact(A,speed)
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
-	if(!target || !src)
-		return 0
-	if(target.z != src.z)
-		return 0
+	if(!target || !src)	return 0
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
+
 	src.throwing = 1
 	src.thrower = thrower
 	src.throw_source = get_turf(src)	//store the origin turf
-	src.pixel_z = 0
+
 	if(usr)
 		if(HULK in usr.mutations)
 			src.throwing = 2 // really strong throw!
@@ -382,26 +378,61 @@
 	var/atom/master = null
 	anchored = 1
 
-/atom/movable/overlay/Destroy()
-	loc = null
-	master = null
-	transform = null
-	. = ..()
+/atom/movable/overlay/New()
+	for(var/x in src.verbs)
+		src.verbs -= x
+	..()
 
 /atom/movable/overlay/attackby(a, b)
 	if (src.master)
 		return src.master.attackby(a, b)
 	return
 
-/atom/movable/overlay/attack_paw(a, b, c)
-	if (src.master)
-		return src.master.attack_paw(a, b, c)
-	return
-
 /atom/movable/overlay/attack_hand(a, b, c)
 	if (src.master)
 		return src.master.attack_hand(a, b, c)
-	return
 
-// Buckling
+/*/atom/movable/proc/touch_map_edge()
+	if(z in sealed_levels)
+		return
+
+	if(config.use_overmap)
+		overmap_spacetravel(get_turf(src), src)
+		return
+
+	var/move_to_z = src.get_transit_zlevel()
+	if(move_to_z)
+		z = move_to_z
+
+		if(x <= TRANSITIONEDGE)
+			x = world.maxx - TRANSITIONEDGE - 2
+			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
+
+		else if (x >= (world.maxx - TRANSITIONEDGE + 1))
+			x = TRANSITIONEDGE + 1
+			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
+
+		else if (y <= TRANSITIONEDGE)
+			y = world.maxy - TRANSITIONEDGE -2
+			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
+
+		else if (y >= (world.maxy - TRANSITIONEDGE + 1))
+			y = TRANSITIONEDGE + 1
+			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
+*/
+/*		if(ticker && istype(ticker.mode, /datum/game_mode/nuclear)) //only really care if the game mode is nuclear
+			var/datum/game_mode/nuclear/G = ticker.mode
+			G.check_nuke_disks()
+
+		spawn(0)
+			if(loc) loc.Entered(src)*/
+
+//by default, transition randomly to another zlevel
+/atom/movable/proc/get_transit_zlevel()
+/*	var/list/candidates = accessible_z_levels.Copy()
+	candidates.Remove("[src.z]")
+
+	if(!candidates.len)
+		return null
+	return text2num(pickweight(candidates))*/
 

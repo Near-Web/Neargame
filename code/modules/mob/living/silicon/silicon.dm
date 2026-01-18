@@ -104,7 +104,7 @@
 			for(var/i = 1; i < alarm_types_clear.len; i++)
 				alarm_types_clear[i] = 0
 
-/mob/living/silicon/drop_item()
+/mob/living/silicon/drop_item(sound=null)
 	return
 
 /mob/living/silicon/emp_act(severity)

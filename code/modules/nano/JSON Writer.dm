@@ -37,7 +37,7 @@ json_writer
 			for(var/targ in json_escape)
 				var/start = 1
 				while(start <= length(txt))
-					var/i = findtext(txt, targ, start)
+					var/i = findtextEx(txt, targ, start)
 					if(!i)
 						break
 					if(targ == "\n")

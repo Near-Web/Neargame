@@ -25,11 +25,11 @@
 
 /obj/structure/filingcabinet/filingcabinet	//not changing the path to avoid unecessary map issues, but please don't name stuff like this in the future -Pete
 	icon_state = "tallcabinet"
-	New()
+/obj/structure/filingcabinet/filingcabinet/New()
 		..()
 		init_obj.Add(src)
 
-/obj/structure/filingcabinet/initialize()
+/obj/structure/filingcabinet/init()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo))
 			I.loc = src

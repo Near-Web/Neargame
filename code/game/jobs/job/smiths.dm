@@ -16,34 +16,34 @@
 	jobdescbr = "Ferreiro especializado em tudo o que a forja pode fazer."
 	thanati_chance = 75
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE,0),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_MASON,3,4),
-	list(SKILL_SMITH,5,7),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_UNARM,0),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_MASON,3,4),
+	alist(SKILL_SMITH,5,7),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_UNARM,0),
+	alist(SKILL_OBSERV, 2,2),
 	)
-	equip(var/mob/living/carbon/human/H)
-		if(!H)
-			return 0
-		..()
-		H.voicetype = "sketchy"
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/bracelet(H), slot_wrist_r)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/common/smith(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/lw/brown(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/alicate(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/carverhammer(H), slot_l_hand)
-		H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/smith(H), slot_back)
-		H.create_kg()
-		return 1
+/datum/job/smithassistant/equip(var/mob/living/carbon/human/H)
+	if(!H)
+		return 0
+	..()
+	H.voicetype = "sketchy"
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/bracelet(H), slot_wrist_r)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/common/smith(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/lw/brown(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/alicate(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/carverhammer(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/smith(H), slot_back)
+	H.create_kg()
+	return 1
 
 
 /datum/job/blacksmith
@@ -63,19 +63,19 @@
 	jobdesc = "The Gate&#8217;s sole, and best, blacksmith, if you do not count your own assistant or that hack hiding out in the caves that ran away several nights ago. You have a reputation to keep as the main supplier of smithed goods in Enoch&#8217;s Gate, and the demand is high, be it from the Baron and his garrison seeking some protection or weapons, or the Merchant wanting to export your metal wares, you have no short supply of customers."
 	thanati_chance = 50
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE,0),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_MASON,3,4),
-	list(SKILL_SMITH,7,8),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_UNARM,0),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_MASON,3,4),
+	alist(SKILL_SMITH,7,8),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_UNARM,0),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -110,17 +110,17 @@
 	access = list(smith)
 	minimal_access = list(smith)
 	skill_mods = list(
-	list(SKILL_MELEE,1,2),
-	list(SKILL_RANGE,0),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0,2),
-	list(SKILL_SMITH,4,6),
-	list(SKILL_CLIMB,3,4),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,1,2),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0,2),
+	alist(SKILL_SMITH,4,6),
+	alist(SKILL_CLIMB,3,4),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)

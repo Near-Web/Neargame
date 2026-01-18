@@ -49,7 +49,7 @@
 		var/list/entries = text2list(codes_txt, ";")	// entries are separated by semicolons
 
 		for(var/e in entries)
-			var/index = findtext(e, "=")		// format is "key=value"
+			var/index = findtextEx(e, "=")		// format is "key=value"
 			if(index)
 				var/key = copytext(e, 1, index)
 				var/val = copytext(e, index+1)

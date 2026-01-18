@@ -155,7 +155,7 @@ var/global/thanatiWords = list()
 			if(!job.player_old_enough(player.client))
 				Debug("GRJ player not old enough, Player: [player]")
 				continue
-		
+
 			if(job.no_trapoc)
 				if(job.sex_lock && player.client.prefs.gender != job.sex_lock)
 					continue
@@ -507,7 +507,7 @@ var/global/thanatiWords = list()
 					to_chat(H, "<span class='baronboldoutlined'>You profess Post-Christianity.</span><span class='baron'> However, your time spent under the tutelage of</span> <span class='baronboldoutlined'>The Warlock</span><span class='baron'> has opened your eyes to the powers that lie beyond. As a result you're acutely aware of how foolish it is to accept one deity.</span>")
 				else
 					to_chat(H, "<span class='baronboldoutlined'>You profess Post-Christianity.</span> <span class='baron'>It is Evergreen's only legal religion. May God and the Inquisition save us from Thanati. Amen.</span>")
-				
+
 		H.create_kg()
 		H.month_born = pick("vernes","lipen","stujen","plesnya","leden","cherven","krovotok","zmeinik","grezen","shramyn","kamnepad","ljutish")
 		H.day_born = rand(1,30)
@@ -623,7 +623,7 @@ var/global/thanatiWords = list()
 			if (!length(job))
 				continue
 
-			var/pos = findtext(job, "=")
+			var/pos = findtextEx(job, "=")
 			var/name = null
 			var/value = null
 

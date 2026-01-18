@@ -283,9 +283,15 @@
 			if(src.handcuffed)
 				var/list/kickRollCuff = roll3d6(user,SKILL_UNARM,null)
 				switch(kickRollCuff[GP_RESULT])
-					if(GP_FAIL || GP_CRITFAIL)
+					if(GP_CRITFAIL)
 						playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
-						visible_message("<span class='crithit'>CRITICAL FAILURE!</span> <span class='hitbold'>[user]</span> <span class='hit'>loses their balance!</span>")
+						visible_message("<span class='crithit'>CRITICAL FAILURE!</span> <span class='hitbold'>[user]</span> <span class='hit'>loses their balance after an attempted kick!</span>")
+						user.resting = 1
+						user.Weaken(12)
+						return
+					if(GP_FAIL)
+						playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+						visible_message("<span class='crithit'>MESSY FAILURE!</span> <span class='hitbold'>[user]</span> <span class='hit'>loses their balance!</span>")
 						user.resting = 1
 						user.Weaken(6)
 						return

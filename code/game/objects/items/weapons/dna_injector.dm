@@ -195,14 +195,14 @@
 	return
 
 
-
+/*
 /obj/item/dnainjector/hulkmut
 	name = "DNA-Injector (Hulk)"
 	desc = "This will make you big and strong, but give you a bad skin condition."
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 2
-	New()
+/obj/item/dnainjector/hulkmut/New()
 		block = HULKBLOCK
 		..()
 
@@ -212,7 +212,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 2
-	New()
+/obj/item/dnainjector/antihulk/New()
 		block = HULKBLOCK
 		..()
 
@@ -222,7 +222,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 8
-	New()
+/obj/item/dnainjector/xraymut/New()
 		block = XRAYBLOCK
 		..()
 
@@ -232,7 +232,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 8
-	New()
+/obj/item/dnainjector/antixray/New()
 		block = XRAYBLOCK
 		..()
 
@@ -242,7 +242,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 10
-	New()
+/obj/item/dnainjector/firemut/New()
 		block = FIREBLOCK
 		..()
 
@@ -252,7 +252,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 10
-	New()
+/obj/item/dnainjector/antifire/New()
 		block = FIREBLOCK
 		..()
 
@@ -262,7 +262,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 12
-	New()
+/obj/item/dnainjector/telemut/New()
 		block = TELEBLOCK
 		..()
 
@@ -657,4 +657,4 @@
 	//block = 14
 	New()
 		block = MONKEYBLOCK
-		..()
+		..() */

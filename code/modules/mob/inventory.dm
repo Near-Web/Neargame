@@ -114,7 +114,7 @@
 
 		W.dropped()
 		return 0
-	hud_used?.add_inventory_overlay()
+	//hud_used?.add_inventory_overlay()
 
 /mob/proc/drop_item_v()		//this is dumb.
 	if(stat == CONSCIOUS && isturf(loc))
@@ -341,7 +341,7 @@
 			return l_hand
 		else
 			return r_hand
-		return
+	return
 
 /mob/living/carbon/human/proc/equip_if_possible(obj/item/W, slot, del_on_fail = 1) // since byond doesn't seem to have pointers, this seems like the best way to do this :/
 	//warning: icky code

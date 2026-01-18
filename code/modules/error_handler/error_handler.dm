@@ -83,9 +83,9 @@ var/global/regex/actual_error_file_line
 	var/list/desclines = list()
 	if(LAZYLEN(splitlines) > ERROR_USEFUL_LEN) // If there aren't at least three lines, there's no info
 		for(var/line in splitlines)
-			if(LAZYLEN(line) < 3 || findtext(line, "source file:") || findtext(line, "usr.loc:"))
+			if(LAZYLEN(line) < 3 || findtextEx(line, "source file:") || findtextEx(line, "usr.loc:"))
 				continue
-			if(findtext(line, "usr:"))
+			if(findtextEx(line, "usr:"))
 				if(usrinfo)
 					desclines.Add(usrinfo)
 					usrinfo = null

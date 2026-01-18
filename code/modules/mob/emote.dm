@@ -31,7 +31,7 @@
 				continue //skip monkeys and leavers
 			if (istype(M, /mob/new_player))
 				continue
-			if(findtext(message," snores.")) //Because we have so many sleeping people.
+			if(findtextEx(message," snores.")) //Because we have so many sleeping people.
 				break
 			if(M.stat == 2 && (M.client.prefs.toggles & CHAT_GHOSTSIGHT) && !(M in viewers(src,null)))
 				M.show_message("[message]")
@@ -50,7 +50,6 @@
 
 /mob/proc/emote_dead(var/message)
 
-	return
 	if(client.prefs.muted & MUTE_DEADCHAT)
 		src << "\red You cannot send deadchat emotes (muted)."
 		return

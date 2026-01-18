@@ -108,7 +108,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	if(copytext(day_string,1,2) == "0")
 		day_string = copytext(day_string,2)
 	var/full_date = time2text(world.timeofday, "DDD, Month DD of YYYY")
-	var/day_loc = findtext(full_date, time2text(world.timeofday, "DD"))
+	var/day_loc = findtextEx(full_date, time2text(world.timeofday, "DD"))
 
 	var/datum/player_info/P = new
 	if (usr)

@@ -237,7 +237,7 @@ datum/signal
 			hradio = new // sets the hradio as a radio intercom
 		if(!freq)
 			freq = PUB_FREQ
-		if(findtext(num2text(freq), ".")) // if the frequency has been set as a decimal
+		if(findtextEx(num2text(freq), ".")) // if the frequency has been set as a decimal
 			freq *= 10 // shift the decimal one place
 
 		if(!job)

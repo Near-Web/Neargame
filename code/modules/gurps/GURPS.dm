@@ -174,12 +174,12 @@ proc/roll3d6(var/mob/living/carbon/human/H, var/base, var/mod, var/hide_roll = F
 	return message
 
 /proc/max_dice(var/dice) //returns the maximum roll of a given dice string. ex: "2d6" returns 12
-	var/mod = copytext(dice, findtext(dice, regex(@"(?=[\+\-]).")),0)
-	var/amt = copytext(dice, 1, findtext(dice, "d"))
-	var/dnum = copytext(dice, findtext(dice, "d")+1, findtext(dice, regex(@"[\+\-]")))
+	var/mod = copytext(dice, findtextEx(dice, regex(@"(?=[\+\-]).")),0)
+	var/amt = copytext(dice, 1, findtextEx(dice, "d"))
+	var/dnum = copytext(dice, findtextEx(dice, "d")+1, findtextEx(dice, regex(@"[\+\-]")))
 	return text2num(amt) * text2num(dnum) + text2num(mod)
 
 /proc/min_dice(var/dice) //returns the minimum roll of a given dice string. ex: "2d6" returns 2
-	var/amt = copytext(dice, 1, findtext(dice, "d"))
-	var/mod = copytext(dice, findtext(dice, regex(@"(?=[\+\-]).")),0)
+	var/amt = copytext(dice, 1, findtextEx(dice, "d"))
+	var/mod = copytext(dice, findtextEx(dice, regex(@"(?=[\+\-]).")),0)
 	return text2num(amt) + text2num(mod)

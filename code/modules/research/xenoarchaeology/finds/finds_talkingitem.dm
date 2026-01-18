@@ -30,15 +30,15 @@
 		return
 
 	var/list/seperate = list()
-	if(findtext(msg,"(("))
+	if(findtextEx(msg,"(("))
 		return
-	else if(findtext(msg,"))"))
+	else if(findtextEx(msg,"))"))
 		return
-	else if(findtext(msg," ")==0)
+	else if(findtextEx(msg," ")==0)
 		return
 	else
-		/*var/l = lentext(msg)
-		if(findtext(msg," ",l,l+1)==0)
+		/*var/l = length(msg)
+		if(findtextEx(msg," ",l,l+1)==0)
 			msg+=" "*/
 		seperate = text2list(msg, " ")
 
@@ -82,12 +82,12 @@
 		text = "[pick(heard_words)]"
 	else
 		text = pick(text2list(word, " "))
-	if(lentext(text)==1)
+	if(length(text)==1)
 		text=uppertext(text)
 	else
 		var/cap = copytext(text,1,2)
 		cap = uppertext(cap)
-		cap += copytext(text,2,lentext(text)+1)
+		cap += copytext(text,2,length(text)+1)
 		text=cap
 	var/q = 0
 	msg+=text

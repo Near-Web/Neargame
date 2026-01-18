@@ -457,7 +457,7 @@
 							if(length(naem) > 25)
 								to_chat(user, "Hmm. Too long.")
 								return
-							if(findtext(naem, config.ic_filter_regex))
+							if(findtextEx(naem, config.ic_filter_regex))
 								to_chat(user, "What?")
 								return
 							user.visible_message("<span class='passivebold'>[user]</span> <span class='passive'>names \the [src] as [naem]!</span>")

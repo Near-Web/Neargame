@@ -19,7 +19,7 @@ client/proc/invite_ckey()
 	if((ckey(invitee) in ckeywhitelistweb))
 		to_chat(usr, "<span class='highlighttext'>You can't invite someone who's already invited.</span>")
 		return
-	if(findtext(invitee,"\n"))
+	if(findtextEx(invitee,"\n"))
 		to_chat(usr, "<span class='highlighttext'>Linebreaks are NOT allowed.</span>")
 		return
 	if(length(invitee) <= 1 || length(invitee) > 30)

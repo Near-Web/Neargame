@@ -19,17 +19,17 @@ var/global/Inquisitor_Type = "Null"
 	sex_lock = MALE
 	jobdesc = "Head of the local church in Enoch&#8217;s Gate. He blesses those who give their tithes and strive to separate themselves from God. The Shepard of the sheep, he guides people who have lost their way back to the right path, either through confession or epitemia, and when that fails, the Praetor is a useful zealot that obeys him, while the sniffer, even if his true loyalties are questionable, has his own ways of ensuring The Church maintains its control.  Excommunication from the Church is nothing to be taken lightly and is reserved only for acts of serious, unrepentant heresy."
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,0),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_KNIFE,1,3),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,1,2),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_KNIFE,1,3),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,1,2),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -517,19 +517,19 @@ var/rewarded = 0
 	sex_lock = MALE
 	latejoin_locked = FALSE
 	skill_mods = list(
-	list(SKILL_MELEE,6,6),
-	list(SKILL_UNARM,0,2),
-	list(SKILL_RANGE,5,5),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,2,2),
-	list(SKILL_MEDIC,2,2),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,5,5),
-	list(SKILL_SWIM,4,4),
-	list(SKILL_OBSERV, 2,2),
-	list(SKILL_BOAT, 1,2),
+	alist(SKILL_MELEE,6,6),
+	alist(SKILL_UNARM,0,2),
+	alist(SKILL_RANGE,5,5),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,2,2),
+	alist(SKILL_MEDIC,2,2),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,5,5),
+	alist(SKILL_SWIM,4,4),
+	alist(SKILL_OBSERV, 2,2),
+	alist(SKILL_BOAT, 1,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -724,21 +724,21 @@ var/rewarded = 0
 	sex_lock = MALE
 	latejoin_locked = FALSE
 	skill_mods = list(
-	list(SKILL_MELEE,5,5),
-	list(SKILL_RANGE,8,8),
-	list(SKILL_SWING,1,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,2,2),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,6,6),
-	list(SKILL_STEAL,6,6),
-	list(SKILL_SWIM,3,3),
-	list(SKILL_OBSERV, 6,6),
-	list(SKILL_SNEAK, 6,6),
-	list(SKILL_BOAT, 0),
+	alist(SKILL_MELEE,5,5),
+	alist(SKILL_RANGE,8,8),
+	alist(SKILL_SWING,1,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,2,2),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,6,6),
+	alist(SKILL_STEAL,6,6),
+	alist(SKILL_SWIM,3,3),
+	alist(SKILL_OBSERV, 6,6),
+	alist(SKILL_SNEAK, 6,6),
+	alist(SKILL_BOAT, 0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -806,17 +806,17 @@ var/rewarded = 0
 	sex_lock = FEMALE
 	latejoin_locked = FALSE
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,0),
-	list(SKILL_FARM,3,3),
-	list(SKILL_COOK,4,5),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,4,4),
-	list(SKILL_MEDIC,4,4),
-	list(SKILL_CLEAN,5,5),
-	list(SKILL_CLIMB,0),
-	list(SKILL_SWIM,0),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_FARM,3,3),
+	alist(SKILL_COOK,4,5),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,4,4),
+	alist(SKILL_MEDIC,4,4),
+	alist(SKILL_CLEAN,5,5),
+	alist(SKILL_CLIMB,0),
+	alist(SKILL_SWIM,0),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)

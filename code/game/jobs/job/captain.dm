@@ -22,20 +22,20 @@ var/fortHand = null
 	minimal_character_age = 40
 	thanati_chance = 100
 	skill_mods = list(
-	list(SKILL_SWORD,0,2),
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE, 2,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,1,1),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,3,3),
-	list(SKILL_CLIMB,8,8),
-	list(SKILL_PARTY,1,1),
-	list(SKILL_SWIM,2,2),
-	list(SKILL_MUSIC, 0),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_SWORD,0,2),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE, 2,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,1,1),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,3,3),
+	alist(SKILL_CLIMB,8,8),
+	alist(SKILL_PARTY,1,1),
+	alist(SKILL_SWIM,2,2),
+	alist(SKILL_MUSIC, 0),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -105,20 +105,20 @@ var/fortHand = null
 	latejoin_locked = FALSE
 	thanati_chance = 75
 	skill_mods = list(
-	list(SKILL_SWORD,0,2),
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE, 2,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,1,1),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,1,1),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_PARTY,2,2),
-	list(SKILL_SWIM,2,2),
-	list(SKILL_MUSIC, 0),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_SWORD,0,2),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE, 2,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,1,1),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,1,1),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_PARTY,2,2),
+	alist(SKILL_SWIM,2,2),
+	alist(SKILL_MUSIC, 0),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -164,21 +164,21 @@ var/fortHand = null
 	access = list(keep,baronquarter)
 	minimal_access = list(keep,baronquarter)
 	skill_mods = list(
-	list(SKILL_SWORD,0,1),
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE, 1,1),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,8,8),
-	list(SKILL_PARTY,4,4),
-	list(SKILL_SWIM,2,2),
-	list(SKILL_MUSIC, 0,1),
-	list(SKILL_OBSERV, 2,2),
-	list(SKILL_UNARM, 0,1),
+	alist(SKILL_SWORD,0,1),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE, 1,1),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,8,8),
+	alist(SKILL_PARTY,4,4),
+	alist(SKILL_SWIM,2,2),
+	alist(SKILL_MUSIC, 0,1),
+	alist(SKILL_OBSERV, 2,2),
+	alist(SKILL_UNARM, 0,1),
 	)
 
 
@@ -227,20 +227,20 @@ var/fortHand = null
 	access = list(keep,baronquarter)
 	minimal_access = list(keep,baronquarter)
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,2,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,1,2),
-	list(SKILL_STEAL,0),
-	list(SKILL_SWIM,2,3),
-	list(SKILL_MUSIC, 5,6),
-	list(SKILL_KNIFE,0,3),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,2,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,1,2),
+	alist(SKILL_STEAL,0),
+	alist(SKILL_SWIM,2,3),
+	alist(SKILL_MUSIC, 5,6),
+	alist(SKILL_KNIFE,0,3),
+	alist(SKILL_OBSERV, 2,2),
 	)
 
 	equip(var/mob/living/carbon/human/H)
@@ -291,19 +291,19 @@ var/fortHand = null
 	access = list(treasury,meistery,keep,baronquarter)
 	minimal_access = list(treasury,meistery,keep,baronquarter)
 	skill_mods = list(
-	list(SKILL_MELEE,5,5),
-	list(SKILL_RANGE,8,9),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,8,9),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,8,9),
-	list(SKILL_CLIMB,8,8),
-	list(SKILL_SWIM,1,2),
-	list(SKILL_MUSIC, 2,6),
-	list(SKILL_KNIFE,0,2),
-	list(SKILL_OBSERV, 8,9),
+	alist(SKILL_MELEE,5,5),
+	alist(SKILL_RANGE,8,9),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,8,9),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,8,9),
+	alist(SKILL_CLIMB,8,8),
+	alist(SKILL_SWIM,1,2),
+	alist(SKILL_MUSIC, 2,6),
+	alist(SKILL_KNIFE,0,2),
+	alist(SKILL_OBSERV, 8,9),
 	)
 
 	equip(var/mob/living/carbon/human/H)
@@ -355,19 +355,19 @@ var/fortHand = null
 	thanati_chance = 1
 	jobdesc = "Serving as the noble protectors of The Gates Keep residents, their focus is to protect the local Baron and his family, although he may direct them to guard anyone worthy of his attention. They come from a variety of backgrounds, be it having once been part of the Baroness´ retinue, been employed by the lord´s heir, or even a long standing bodyguard hired by the Lord Baron himself, in his youth. You are bound by an oath to protect your target, and you have no intention of breaking it, ever, under any circumstance."
 	skill_mods = list(
-	list(SKILL_MELEE,5,6),
-	list(SKILL_RANGE,3,3),
-	list(SKILL_UNARM,3,3),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,6,6),
-	list(SKILL_SWIM,4,5),
-	list(SKILL_OBSERV, 4,4),
-	list(SKILL_BOAT, 0),
+	alist(SKILL_MELEE,5,6),
+	alist(SKILL_RANGE,3,3),
+	alist(SKILL_UNARM,3,3),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,6,6),
+	alist(SKILL_SWIM,4,5),
+	alist(SKILL_OBSERV, 4,4),
+	alist(SKILL_BOAT, 0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -451,18 +451,18 @@ var/fortHand = null
 	jobdesc = "You&#8217;re one of those girls who should be quiet and make the lives of your master and mistress easier."
 	jobdescbr = "Você é uma daquelas garotas que deveria ficar quieta e tornar a vida de seu mestre e dona mais fácil."
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,0),
-	list(SKILL_FARM,2,3),
-	list(SKILL_COOK,3,4),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN, 5),
-	list(SKILL_CLIMB,1,1),
-	list(SKILL_STEAL,0),
-	list(SKILL_SWIM,0),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_FARM,2,3),
+	alist(SKILL_COOK,3,4),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN, 5),
+	alist(SKILL_CLIMB,1,1),
+	alist(SKILL_STEAL,0),
+	alist(SKILL_SWIM,0),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -496,19 +496,19 @@ var/fortHand = null
 	minimal_access = list(keep, baronquarter)
 	jobdesc = "The Baron&#8217;s friend, a noble staying temporarily in Enoch&#8217;s Gate. Hopefully their stay is not extended indefinitely."
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE, 2,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0,1),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,1,1),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_PARTY,3,4),
-	list(SKILL_SWIM,1,2),
-	list(SKILL_MUSIC, 0),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE, 2,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0,1),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,1,1),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_PARTY,3,4),
+	alist(SKILL_SWIM,1,2),
+	alist(SKILL_MUSIC, 0),
+	alist(SKILL_OBSERV, 2,2),
 	)
 
 	equip(var/mob/living/carbon/human/H)
@@ -570,17 +570,17 @@ var/fortHand = null
 	jobdesc = "One of the personal child servants of the Baron. They&#8217;re extremely nifty at getting into the small crevices maids just can&#8217;t reach and are excellent cleaners! Or so you&#8217;ve been told."
 	jobdescbr = "Pequeno servo. Brinque e divirta-se até que alguém o force a lavar o chão."
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,0),
-	list(SKILL_FARM,2,2),
-	list(SKILL_COOK,3,3),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,3,3),
-	list(SKILL_CLIMB,4,4),
-	list(SKILL_SWIM,0),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_FARM,2,2),
+	alist(SKILL_COOK,3,3),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,3,3),
+	alist(SKILL_CLIMB,4,4),
+	alist(SKILL_SWIM,0),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -618,20 +618,20 @@ var/fortHand = null
 	access = list(keep,meistery,treasury)
 	minimal_access = list(keep,meistery,treasury)
 	skill_mods = list(
-	list(SKILL_MELEE,1,1),
-	list(SKILL_RANGE, 2,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,6,6),
-	list(SKILL_PARTY,0),
-	list(SKILL_SWIM,1,1),
-	list(SKILL_MUSIC, 0),
-	list(SKILL_OBSERV, 1,1),
-	list(SKILL_ALCH, 5,7),
+	alist(SKILL_MELEE,1,1),
+	alist(SKILL_RANGE, 2,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,6,6),
+	alist(SKILL_PARTY,0),
+	alist(SKILL_SWIM,1,1),
+	alist(SKILL_MUSIC, 0),
+	alist(SKILL_OBSERV, 1,1),
+	alist(SKILL_ALCH, 5,7),
 	)
 
 	equip(var/mob/living/carbon/human/H)

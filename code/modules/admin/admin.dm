@@ -542,8 +542,8 @@ var/global/log_adminsay = 1
 	var/dat = "<B>Job Bans!</B><HR><table>"
 	for(var/t in jobban_keylist)
 		var/r = t
-		if( findtext(r,"##") )
-			r = copytext( r, 1, findtext(r,"##") )//removes the description
+		if( findtextEx(r,"##") )
+			r = copytext( r, 1, findtextEx(r,"##") )//removes the description
 		dat += text("<tr><td>[t] (<A href='byond://?src=\ref[src];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
 	usr << browse(dat, "window=ban;size=400x400")
@@ -888,7 +888,7 @@ var/global/log_adminsay = 1
 	var/list/matches = new()
 
 	for(var/path in types)
-		if(findtext("[path]", object))
+		if(findtextEx("[path]", object))
 			matches += path
 
 	if(matches.len==0)

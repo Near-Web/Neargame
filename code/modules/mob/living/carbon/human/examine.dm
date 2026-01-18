@@ -116,7 +116,7 @@
 						if(HEADD.brained)
 							status += "<span class='magentatext'>CRACK</span>"
 					if(status.len)
-						msg += "<span class='statustext'>¤ [capitalize(org.display_name)]: [english_listt(status)]</span>\n"
+						msg += "<span class='statustext'>¤ [capitalize(org.display_name)]: [english_list(status)]</span>\n"
 					else
 						msg += "<span class='statustext'>¤ [capitalize(org.display_name)]: OK</span>\n"
 
@@ -334,7 +334,7 @@
 					msg += "<p style='margin : 0; padding-top:0;font-size:12px;'><small><span class='moodboxtext'>[t_chis] eyes are closed.</span></small></p>"
 		if(!isobserver(user) && (ishuman(M)))
 			if(M?.isVampire)
-				var/blood_volume = round(P:vessel.get_reagent_amount("blood"))
+				var/blood_volume = round(P.vessel.get_reagent_amount("blood"))
 				var/blood_percent =  blood_volume / 560
 				blood_percent *= 100
 				blood_percent = round(blood_percent)
@@ -360,7 +360,7 @@
 			/*
 			spawn(0)
 				if(distance <= 1 && user.stat != 1)
-					if(do_after(user, 15))					
+					if(do_after(user, 15))
 						if(pulse == PULSE_NONE)
 							to_chat(user, "<span class='horriblestate'>[t_He] has no pulse[src.client ? "" : " and [t_his] soul has departed"]...</span>")
 						else

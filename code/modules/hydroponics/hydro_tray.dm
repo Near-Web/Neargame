@@ -1,4 +1,3 @@
-#define HYDRO_SPEED_MULTIPLIER 1
 
 /obj/machinery/portable_atmospherics/hydroponics
 	name = "hydroponics tray"
@@ -803,7 +802,6 @@
 	..()
 	new /turf/simulated/floor/plating/dirt2(loc)
 	qdel(src)
-	return;
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid
 	icon_state = pick("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16")
 	density = 0

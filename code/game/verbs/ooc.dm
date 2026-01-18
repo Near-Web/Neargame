@@ -30,13 +30,13 @@ var/global/normal_ooc_colour = "#666699"
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
-		if(findtext(msg, "byond://"))
+		if(findtextEx(msg, "byond://"))
 			to_chat(src,"<span class='highlighttext'><B>Stop right there criminal scum!</B></span>")
 			src << 'sound/sound_ahelp_br.ogg'
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
-		if(findtext(msg, "OOC:"))
+		if(findtextEx(msg, "OOC:"))
 			to_chat(src, "<span class='highlighttext'><B>\"OOC:\" is not required.</B></span>")
 			src << 'sound/sound_ahelp_br.ogg'
 			log_admin("[key_name(src)] has attempted to be carente in OOC: [msg]")
@@ -59,7 +59,7 @@ var/global/normal_ooc_colour = "#666699"
 	msg = emoji_parse(msg)
 
 	if(config.ooc_filter_regex)
-		if(findtext(lowertext(msg), config.ooc_filter_regex))
+		if(findtextEx(lowertext(msg), config.ooc_filter_regex))
 			src << 'sound/vam_ban.ogg'
 			to_chat(src, "That was pretty cringe!")
 			log_admin("[key] just tried to say OOC cringe")

@@ -194,8 +194,8 @@ KeyState
 						if(client)client.KeyDown(KeyCode,shift)
 					else if(key_repeat&&client)client.KeyDown(KeyCode)
 				if("MouseCoordinate")
-					mouse_x=copytext(T,1,findtext(T,","))
-					mouse_y=copytext(T,findtext(T,",")+1,0)
+					mouse_x=copytext(T,1,findtextEx(T,","))
+					mouse_y=copytext(T,findtextEx(T,",")+1,0)
 
 client
 	var

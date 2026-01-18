@@ -22,10 +22,9 @@
 
 /obj/effect/decal/cleanable/greenglow
 
-	New()
-		..()
-		spawn(1200)// 2 minutes
-			qdel(src)
+/obj/effect/decal/cleanable/greenglow/New()
+	..()
+	QDEL_IN(src, 2 MINUTES)
 
 /obj/effect/decal/cleanable/dirt
 	name = "dirt"
@@ -80,11 +79,6 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "cobweb1"
 
-	Bumped(atom/user)
-		if(ismob(user))
-			if(prob(20))
-				user << "[pick("The cobweb softly touches your face", "You feel something touching your face", "You fell the disguisting touch of the cobweb", "Some of the cobweb remains on your face")]..."
-
 /obj/effect/decal/cleanable/molten_item
 	name = "gooey grey mass"
 	desc = "It looks like a melted... something."
@@ -102,17 +96,6 @@
 	layer = 3
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "cobweb2"
-
-	Bumped(atom/user)
-		if(ismob(user))
-			if(prob(20))
-				user << "[pick("The cobweb softly touches your face", "You feel something touching your face", "You fell the disguisting touch of the cobweb", "Some of the cobweb remains on your face")]..."
-
-/obj/item/reagent_containers/food/snacks/Destroy()
-	if(contents)
-		for(var/atom/movable/something in contents)
-			something.dropInto(loc)
-	. = ..()
 
 /obj/effect/decal/cleanable/vomit
 	name = "vomit"

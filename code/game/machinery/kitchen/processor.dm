@@ -35,11 +35,11 @@
 
 	monkeymeat
 		input = /obj/item/reagent_containers/food/snacks/meat/monkey
-		output = /obj/item/reagent_containers/food/snacks/faggot
+		output = /obj/item/reagent_containers/food/snacks/meatball
 
 	humanmeat
 		input = /obj/item/reagent_containers/food/snacks/meat/human
-		output = /obj/item/reagent_containers/food/snacks/faggot
+		output = /obj/item/reagent_containers/food/snacks/meatball
 
 	potato
 		input = /obj/item/reagent_containers/food/snacks/grown/potato

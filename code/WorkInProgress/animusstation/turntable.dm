@@ -79,7 +79,7 @@
 	turntable_soundtracks = list()
 	spawn(10 SECONDS)
 		for(var/mob/living/carbon/human/H in mob_list)
-			if(findtext(H.real_name, "White") || findtext(H.real_name, "Heisenberg"))
+			if(findtextEx(H.real_name, "White") || findtextEx(H.real_name, "Heisenberg"))
 				var/datum/turntable_soundtrack/D = new()
 				D.f_name = "D"
 				D.name = "LZ "
@@ -114,7 +114,7 @@
 
 	if(!done)
 		for(var/mob/living/carbon/human/H in mob_list)
-			if(findtext(H.real_name, "White") || findtext(H.real_name, "Heisenberg"))
+			if(findtextEx(H.real_name, "White") || findtextEx(H.real_name, "Heisenberg"))
 				var/datum/turntable_soundtrack/D = new()
 				D.f_name = "D"
 				D.name = "LZ "

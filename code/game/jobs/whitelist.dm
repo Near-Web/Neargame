@@ -43,9 +43,9 @@ var/list/whitelist = list()
 		return 0
 	if(M && species)
 		for (var/s in alien_whitelist)
-			if(findtext(s,"[M.ckey] - [species]"))
+			if(findtextEx(s,"[M.ckey] - [species]"))
 				return 1
-			if(findtext(s,"[M.ckey] - All"))
+			if(findtextEx(s,"[M.ckey] - All"))
 				return 1
 
 	return 0

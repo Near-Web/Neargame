@@ -32,7 +32,7 @@ var/roundsinvite = 1
 		"changeskill",
 		"showaspect"
 	)
-	var/chosenoption = sanitize_safe(input("Input a command.","[src.key]"))
+	var/chosenoption = sanitize(input("Input a command.","[src.key]"))
 	if(!chosenoption)
 		return
 	if(inputlist.Find(chosenoption))

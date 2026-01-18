@@ -67,7 +67,7 @@ var/list/cursed = list()
 	drops = list(/obj/item/stone, /obj/item/stone)
 	break_sounds = list('sound/effects/npc_human_pickaxe_01.ogg','sound/effects/npc_human_pickaxe_02.ogg','sound/effects/npc_human_pickaxe_03.ogg','sound/effects/npc_human_pickaxe_05.ogg')
 	var/activated = 0
-	
+
 
 /obj/structure/fortune/veilpillar/Bumped(mob/M as mob)
 	if(istype(M, /mob/dead/observer))
@@ -147,7 +147,7 @@ var/list/cursed = list()
 					cursed += T.owner
 					playsound(src.loc, 'sound/spectre/w_suc.ogg', 40, 0, -1)
 					switch(inputcurse)
-						if("Aroma of Despair")									
+						if("Aroma of Despair")
 							T.owner.hygiene = -400
 						if("Alopecian Beauty")
 							T.owner.h_style = "Bald"
@@ -186,19 +186,19 @@ var/list/cursed = list()
 				qdel(T)
 			if("Clear Curse")
 				switch(T.owner.curse)
-					if("Aroma of Despair")									
+					if("Aroma of Despair")
 						T.owner.hygiene = 100
 					else
 						cursed -= T.owner
 				qdel(T)
-				
+
 		icon_state = "veilpillar0"
 		activated = 0
 
 /obj/structure/fortune/veilpillar/Destroy()
 	..()
 	for(var/mob/living/carbon/human/L in cursed)
-		if(L.curse == "Aroma of Despair")									
+		if(L.curse == "Aroma of Despair")
 			L.hygiene = 100
 		L.clear_event(/datum/happiness_event/cursed)
 	for(var/mob/living/carbon/human/W in mob_list)
@@ -207,7 +207,7 @@ var/list/cursed = list()
 			W.client.ChromieWinorLoose(-2)
 			W.death()
 	cursed = null
-	
+
 
 /obj/item/clothing/head/amulet/witch
 	name = "wooden amulet"
@@ -292,6 +292,6 @@ var/list/cursed = list()
 		user.update_hair()
 		witchdisguised = 1
 	else to_chat(user, "[pick(fnord)] I need my amulet!")
-	
+
 
 

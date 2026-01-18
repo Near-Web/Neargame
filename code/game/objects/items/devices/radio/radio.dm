@@ -37,11 +37,10 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	var/const/TRANSMISSION_DELAY = 5 // only 2/second/radio
 	var/const/FREQ_LISTENING = 1
 
-/obj/item/device/radio
 	var/datum/radio_frequency/radio_connection
 	var/list/datum/radio_frequency/secure_radio_connections = new
 
-	proc/set_frequency(new_frequency)
+/obj/item/device/radio/proc/set_frequency(new_frequency)
 		radio_controller.remove_object(src, frequency)
 		frequency = new_frequency
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
@@ -682,7 +681,6 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		if (b_stat)
 			return
 		else
-			return
 		updateDialog()
 			//Foreach goto(83)
 		add_fingerprint(user)

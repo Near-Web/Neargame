@@ -98,7 +98,7 @@ var/list/dt_str  = list( //Because enums don't exist
 	"DAM_HPI",
 )
 
-proc/damtype2text(var/dam_type)
+/proc/damtype2text(var/dam_type)
 	return dt_str[dam_type]
 
 #define SHARP_DAM DAM_CUT, DAM_IMP, DAM_SPI, DAM_PI, DAM_LPI, DAM_HPI //used for checking things like artery cuts.

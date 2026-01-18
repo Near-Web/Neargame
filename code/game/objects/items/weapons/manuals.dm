@@ -860,7 +860,7 @@
 	icon_state ="bookDetective"
 	author = "Nanotrasen"
 	title = "The Film Noir: Proper Procedures for Investigations"
-	New()
+/obj/item/book/manual/detective/New()
 		dat = {"<html>
 				<head>
 				<style>

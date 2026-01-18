@@ -133,7 +133,7 @@
 		new /obj/item/reagent_containers/glass/beaker( src )
 		new /obj/item/reagent_containers/glass/beaker( src )
 		new /obj/item/reagent_containers/glass/beaker( src )
-
+/*
 /obj/item/storage/box/injectors
 	name = "box of DNA injectors"
 	desc = "This box contains injectors it seems."
@@ -146,7 +146,7 @@
 		new /obj/item/dnainjector/m2h(src)
 		new /obj/item/dnainjector/m2h(src)
 		new /obj/item/dnainjector/m2h(src)
-
+*/
 
 /obj/item/storage/box/blanks
 	name = "box of blank shells"

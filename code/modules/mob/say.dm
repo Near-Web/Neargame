@@ -46,7 +46,7 @@
 		sleep(40)
 		update_saychat()
 
-client/var/say_focus = FALSE
+/client/var/say_focus = FALSE
 /mob/verb/setfocus(focus as num)
 	client?.say_focus = focus
 

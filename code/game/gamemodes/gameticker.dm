@@ -710,7 +710,7 @@ var/turf/MiniSpawn
 		H.CheckSpecialCompletion()
 	//calls auto_declare_completion_* for all modes
 	for(var/handler in typesof(/datum/game_mode/proc))
-		if (findtext("[handler]","auto_declare_completion_"))
+		if (findtextEx("[handler]","auto_declare_completion_"))
 			call(mode, handler)()
 
 	CheckLatepartyCompletion()

@@ -2,12 +2,11 @@
 /mob/living/carbon
 	var/datum/skills/my_skills = null
 
-	proc
-		init_skills()
-			var/datum/skills/newSkills = new
-			newSkills.host = src
-			newSkills.rand_skills()
-			my_skills = newSkills
+/mob/living/carbon/proc/init_skills()
+		var/datum/skills/newSkills = new
+		newSkills.host = src
+		newSkills.rand_skills()
+		my_skills = newSkills
 
 /datum/skills
 	var/mob/living/carbon/host = null
@@ -102,14 +101,13 @@ var/static/list/global_skills
 /******************************************/
 /mob/living/carbon
 	var/datum/stat_holder/my_stats = null
-	proc
-		init_stats()
-			var/datum/stat_holder/newStats = new
-			newStats.host = src
-			newStats.rand_stats()
-			my_stats = newStats
+/mob/living/carbon/proc/init_stats()
+		var/datum/stat_holder/newStats = new
+		newStats.host = src
+		newStats.rand_stats()
+		my_stats = newStats
 
-proc/strToDamageModifier(strength, ht)
+/mob/living/carbon/proc/strToDamageModifier(strength, ht)
 	var/diff = strength - ht
 	var/baseDamage = 5
 
@@ -128,7 +126,7 @@ proc/strToDamageModifier(strength, ht)
 
 	//SISTEMA ANTIGO
 	//ACHO QUE VAI SER PIOR QUE O ATUAL, SE DEUS QUISER O ATUAL É MELHOR
-
+/*
 	switch(strength) //HAHAHAHAHAHAHAHAHAHAHAHAH AHHAHAH SIMM!!
 		if(1) return 1
 		if(2) return 2.5
@@ -162,7 +160,7 @@ proc/strToDamageModifier(strength, ht)
 		if(31) return 57
 		if(32) return 60
 		if(32 to INFINITY)
-			return rand(60, 80)
+			return rand(60, 80)*/
 
 /obj/item/proc/getNewWeaponForce(st, ht){
 	var/diff = st - 10
@@ -188,7 +186,7 @@ proc/strToDamageModifier(strength, ht)
 
 //BASICAMENTE A PROC ABAIXO O PLANO É SER SUBSTITUIDA PELA DE CIMA
 //A DE BAIXO É MUITO CAGADA E DEIXA TUDO ROUBADO!!!
-proc/strToDamageModifierItem(strength, ht)
+/mob/living/carbon/proc/strToDamageModifierItem(strength, ht)
 	switch(strength)
 		if(1 to 5)
 			return 1//+3 +3
@@ -278,10 +276,10 @@ proc/strToDamageModifierItem(strength, ht)
 		change_stat(i,BASE_STAT_CHANGE)
 
 /**************************************
-************HUMAN MY NIGGA*************
+************HUMAN*************
 ***************************************/
 
-proc/skilltxt(skill)
+/proc/skilltxt(skill)
 	switch(skill)
 		if(-INFINITY to 0)
 			return "<small>Pathetic</small>"
@@ -302,7 +300,7 @@ proc/skilltxt(skill)
 
 
 
-proc/skilltxt2(skill)
+/proc/skilltxt2(skill)
 	switch(skill)
 		if(-INFINITY to 0)
 			return "<span class='notthatbadactually'>0"
@@ -387,7 +385,7 @@ proc/skilltxt2(skill)
 #define SKILL_SUCESSO 1
 #define SKILL_FALHA 0
 
-proc/skillcheck(var/skill, var/requirement, var/show_message, var/mob/user, var/message = "I have failed to do this.")//1 - 100
+/proc/skillcheck(var/skill, var/requirement, var/show_message, var/mob/user, var/message = "I have failed to do this.")//1 - 100
 	skill = (skill+2)*10
 	var/mob/living/carbon/human/H = user
 	if(requirement > skill)
@@ -404,7 +402,7 @@ proc/skillcheck(var/skill, var/requirement, var/show_message, var/mob/user, var/
 			return SKILL_FALHA
 
 
-proc/statcheck(stat, requirement, show_message, mob/user, message = "I have failed to do this.")//1 - 100
+/proc/statcheck(stat, requirement, show_message, mob/user, message = "I have failed to do this.")//1 - 100
 	var/dice = "1d20"
 	if(stat < requirement)
 		var/H = roll(dice)

@@ -10,19 +10,19 @@
 	var/list/par = params2list(params)
 	var/screen_loc = par["screen-loc"]
 
-	if(findtext(screen_loc, "minimap:") != 1)
+	if(findtextEx(screen_loc, "minimap:") != 1)
 		return
 
 	screen_loc = copytext(screen_loc, length("minimap:") + 1)
 
-	var/x_text = copytext(screen_loc, 1, findtext(screen_loc, ","))
-	var/y_text = copytext(screen_loc, findtext(screen_loc, ",") + 1)
+	var/x_text = copytext(screen_loc, 1, findtextEx(screen_loc, ","))
+	var/y_text = copytext(screen_loc, findtextEx(screen_loc, ",") + 1)
 
 	var/x = chunk.x
-	x += round((text2num(copytext(x_text, findtext(x_text, ":") + 1)) + 1) / 2)
+	x += round((text2num(copytext(x_text, findtextEx(x_text, ":") + 1)) + 1) / 2)
 
 	var/y = chunk.y
-	y += round((text2num(copytext(y_text, findtext(y_text, ":") + 1)) + 1) / 2)
+	y += round((text2num(copytext(y_text, findtextEx(y_text, ":") + 1)) + 1) / 2)
 
 	if(istype(usr, /mob/living/silicon/ai))
 		var/mob/living/silicon/ai/ai = usr

@@ -20,9 +20,9 @@
 
 		var/prefix = P.callsign + ","
 
-		if(lentext(text) <= lentext(prefix))
+		if(length(text) <= length(prefix))
 			return
-		var/i = lentext(prefix) + 1
+		var/i = length(prefix) + 1
 		if(cmptext(copytext(text, 1, i), prefix))
 			P.input_line = html_decode(copytext(text, i))
 			P.process_line()

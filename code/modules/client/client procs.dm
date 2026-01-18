@@ -40,7 +40,7 @@ var/global/max_players = 100
 		return
 
 	//search the href for script injection
-	if( findtext(href,"<script",1,0) )
+	if( findtextEx(href,"<script",1,0) )
 		to_world_log("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//qdel(usr)
@@ -249,7 +249,7 @@ var/global/max_players = 100
 
 	if(holder)
 		add_admin_verbs()
-		admin_memo_show()
+//		admin_memo_show()
 
 	// Forcibly enable hardware-accelerated graphics, as we need them for the lighting overlays.
 	// (but turn them off first, since sometimes BYOND doesn't turn them on properly otherwise)

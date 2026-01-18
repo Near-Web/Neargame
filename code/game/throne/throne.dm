@@ -64,7 +64,7 @@ var/global/list/riot_essential = list("Baron", "Court Bodyguard", "Charybdis", "
 				var/input = sanitize(input(usr, "Type your decree.", "Enoch's Gate Decree", "") as message|null)
 				if(!input)
 					return TOPIC_NOACTION
-				if(findtext(input, "https://"))
+				if(findtextEx(input, "https://"))
 					message_admins("[key_name(user)] attempted to send a decree with a URL in their decree.")
 					return TOPIC_NOACTION
 				if(get_dist(src, user) > 1)
@@ -202,7 +202,7 @@ var/global/list/riot_essential = list("Baron", "Court Bodyguard", "Charybdis", "
 				var/input = sanitize(input(user, "Type your decree.", "Enoch's Gate Decree", "") as message|null)
 				if(!input)
 					return
-				if(findtext(input, "https://"))
+				if(findtextEx(input, "https://"))
 					message_admins("[key_name(user)] attempted to send a decree with a URL in their decree.")
 					return TOPIC_NOACTION
 				if(get_dist(src, user) > 1)
@@ -224,7 +224,7 @@ var/global/list/riot_essential = list("Baron", "Court Bodyguard", "Charybdis", "
 				var/input = sanitize(input(usr, "Type your capture.", "Enoch's Gate Decree", "") as message|null)
 				if(!input)
 					return TOPIC_NOACTION
-				if(findtext(input, "https://"))
+				if(findtextEx(input, "https://"))
 					message_admins("[key_name(user)] attempted to send a decree with a URL in their decree.")
 					return TOPIC_NOACTION
 				to_chat(world, "<span class='ravenheartfortress'>Enoch's Gate Hold</span>")
@@ -238,7 +238,7 @@ var/global/list/riot_essential = list("Baron", "Court Bodyguard", "Charybdis", "
 				var/input = sanitize(input(usr, "Type your execution.", "Enoch's Gate Decree", "") as message|null)
 				if(!input)
 					return TOPIC_NOACTION
-				if(findtext(input, "https://"))
+				if(findtextEx(input, "https://"))
 					message_admins("[key_name(user)] attempted to send a decree with a URL in their decree.")
 					return TOPIC_NOACTION
 				to_chat(world, "<span class='ravenheartfortress'>Enoch's Gate Hold</span>")
@@ -668,7 +668,7 @@ var/roundendready = FALSE
 	var/input = sanitize(input(usr, "Type your decree.", "Enoch's Gate Decree", "") as message|null, list("\t"="#","ÿ"="&#255;"))
 	if(!input)
 		return
-	if(findtext(input, "https://"))
+	if(findtextEx(input, "https://"))
 		message_admins("[key_name(usr)] attempted to send a decree with a URL in their decree.")
 		return
 	to_chat(world, "<span class='ravenheartfortress'>Enoch's Gate Hold</span>")

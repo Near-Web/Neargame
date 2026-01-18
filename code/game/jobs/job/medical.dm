@@ -18,19 +18,19 @@
 	thanati_chance = 50
 	money = 25
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE,4,4),
-	list(SKILL_UNARM,0,1),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,10,10),
-	list(SKILL_MEDIC,10,10),
-	list(SKILL_CLEAN,2,2),
-	list(SKILL_SWIM,0),
-	list(SKILL_OBSERV, 4,4),
-	list(SKILL_ALCH, 6,6),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE,4,4),
+	alist(SKILL_UNARM,0,1),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,10,10),
+	alist(SKILL_MEDIC,10,10),
+	alist(SKILL_CLEAN,2,2),
+	alist(SKILL_SWIM,0),
+	alist(SKILL_OBSERV, 4,4),
+	alist(SKILL_ALCH, 6,6),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -66,18 +66,18 @@
 	money = 9
 	thanati_chance = 50
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,2,2),
-	list(SKILL_UNARM,0),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_CLIMB,1,1),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,6,6),
-	list(SKILL_MEDIC,6,6),
-	list(SKILL_CLEAN,0),
-	list(SKILL_OBSERV, 2,3),
-	list(SKILL_ALCH, 3,3),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,2,2),
+	alist(SKILL_UNARM,0),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_CLIMB,1,1),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,6,6),
+	alist(SKILL_MEDIC,6,6),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_OBSERV, 2,3),
+	alist(SKILL_ALCH, 3,3),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -114,18 +114,18 @@
 	thanati_chance = 30
 	money = 7
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,2,2),
-	list(SKILL_UNARM,0,1),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,3,3),
-	list(SKILL_CLIMB,1,1),
-	list(SKILL_MEDIC,3,3),
-	list(SKILL_ALCH,4,4),
-	list(SKILL_CLEAN,8,9),
-	list(SKILL_OBSERV, 8,9),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,2,2),
+	alist(SKILL_UNARM,0,1),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,3,3),
+	alist(SKILL_CLIMB,1,1),
+	alist(SKILL_MEDIC,3,3),
+	alist(SKILL_ALCH,4,4),
+	alist(SKILL_CLEAN,8,9),
+	alist(SKILL_OBSERV, 8,9),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)

@@ -17,11 +17,17 @@
 #define RADIATOR_EXPOSED_SURFACE_AREA_RATIO 0.04 // (3 cm + 100 cm * sin(3deg))/(2*(3+100 cm)). Unitless ratio.
 #define HUMAN_EXPOSED_SURFACE_AREA          5.2 //m^2, surface area of 1.7m (H) x 0.46m (D) cylinder
 
+#define SURFACETEMP 250.15
+#define CAVEDIRT 243.15
 #define COLDCAVE  253.15 //    -20.0 degrees celcius
 #define COLDDIRT  263.15 //    -10.0 degrees celcius
+#define MAGMA 973.15					// MAGMA
+
 #define T0C  273.15 //    0.0 degrees celcius
 #define T20C 293.15 //   20.0 degrees celcius
 #define TCMB 2.7    // -270.3 degrees celcius
+
+#define WATER_BOIL_TEMP 393
 
 #define CLAMP01(x) max(0, min(1, x))
 #define CLAMP(CLVALUE,CLMIN,CLMAX) ( max( (CLMIN), min((CLVALUE), (CLMAX)) ) )

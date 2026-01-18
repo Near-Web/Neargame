@@ -45,7 +45,7 @@
 			return .
 
 
-proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
+/proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
 	for(var/turf/T in list)
 		for(var/mob/M in T.contents)
 			if(!M.InCone(center, dir)) list -= M

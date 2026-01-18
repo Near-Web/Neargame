@@ -17,6 +17,7 @@
  * Utensils
  */
 /obj/item/kitchen/utensil
+	drop_sound = 'sound/items/drop/knife.ogg'
 	force = 8.0
 	w_class = 1.0
 	throwforce = 5.0
@@ -26,11 +27,45 @@
 	origin_tech = "materials=1"
 	attack_verb = list("slashed")
 	weaponteaching = "KNIFE"
+	sharp = 0
+	edge = 1
+	var/scoop_volume = 5
+	var/scoop_food = 1
+	var/loaded // Name for currently loaded food object.
+	var/loaded_color // Color for currently loaded food object.
 
 /obj/item/kitchen/utensil/New()
+	. = ..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)
-	return
+	create_reagents(scoop_volume)
+
+
+/obj/item/kitchen/utensil/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	if(!istype(M))
+		return ..()
+
+	if(user.a_intent != "help")
+		if(user.zone_sel.selecting == "mouth" || user.zone_sel.selecting == "eyes")
+			if((CLUMSY in user.mutations) && prob(50))
+				M = user
+			return eyestab(M,user)
+		else
+			return ..()
+
+	if (reagents.total_volume > 0)
+		reagents.trans_to(M, reagents.total_volume)
+		if(M == user)
+			for(var/mob/O in viewers(M, null))
+				O.show_message(text("\blue [user] eats some [loaded] from \the [src]."), 1)
+				M.reagents.add_reagent("nutriment", 1)
+		else
+			for(var/mob/O in viewers(M, null))
+				O.show_message(text("\blue [user] feeds [M] some [loaded] from \the [src]."), 1)
+				M.reagents.add_reagent("nutriment", 1)
+
+		overlays.Cut()
+		return
 
 /*
  * Spoons
@@ -74,8 +109,7 @@
 			else
 				for(var/mob/O in viewers(M, null))
 					O.show_message(text("\red [] tried to feed [] a delicious forkful of omelette through the mask!", user, M), 1)
-		return
-
+			return
 		if(M == user)
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("\blue [] eats a delicious forkful of omelette!", user), 1)
@@ -145,10 +179,12 @@
 	force_wielded = 18
 	force_unwielded = 13
 	edge = FALSE
+	sharp = TRUE
 	drop_sound = 'sound/weapons/knife_drop.ogg'
 	drawsound = 'sound/weapons/knife_equip.ogg'
 	item_worth = 4
 	hitsound= "slash"
+	scoop_food = 0
 	speciality = SKILL_KNIFE
 	var/atk_mode = SLASH
 
@@ -445,11 +481,11 @@
 	item_worth = 5
 	hitsound= "blade"
 
-	suicide_act(mob/user)
-		viewers(user) << pick("\red <b>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>")
-		return (BRUTELOSS)
+/obj/item/kitchenknife/suicide_act(mob/user)
+	viewers(user) << pick("\red <b>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
+						"\red <b>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
+						"\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>")
+	return (BRUTELOSS)
 
 /obj/item/kitchenknife/ritual
 	name = "ritual knife"
@@ -465,7 +501,7 @@
 		user.bloody_hands()
 		user.apply_damage(5, BRUTE, "r_hand")
 		user.apply_damage(5, BRUTE, "l_hand")
-		
+
 
 /obj/item/kitchenknife/tanning
 	name = "tanning knife"

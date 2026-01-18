@@ -264,7 +264,7 @@
 		var/newfreq = input(usr, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network) as null|num
 		if(canAccess(usr))
 			if(newfreq)
-				if(findtext(num2text(newfreq), "."))
+				if(findtextEx(num2text(newfreq), "."))
 					newfreq *= 10 // shift the decimal one place
 				if(newfreq < 10000)
 					change_frequency = newfreq
@@ -325,7 +325,7 @@
 			if("freq")
 				var/newfreq = input(usr, "Specify a new frequency to d_filter (GHz). Decimals assigned automatically.", src, network) as null|num
 				if(newfreq && canAccess(usr))
-					if(findtext(num2text(newfreq), "."))
+					if(findtextEx(num2text(newfreq), "."))
 						newfreq *= 10 // shift the decimal one place
 					if(!(newfreq in freq_listening) && newfreq < 10000)
 						freq_listening.Add(newfreq)

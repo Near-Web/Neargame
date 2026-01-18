@@ -34,13 +34,6 @@
 	var/mob/living/carbon/human/H = M
 	if(M.stat != DEAD)
 		return
-	/*
-	var/datum/reagents/reagents = new/datum/reagents(2)
-	reagents.add_reagent(/datum/reagent/water, 2)
-	reagents.reaction(H, INGEST)
-	reagents.trans_to(H, 2)
-	H.bladder += 5 //For peeing
-	*/
 	visible_message("<span class='bname'>⠀[H]</span> drinks from \the [src]!</span>")
 	playsound(M.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 	if(H.client)
@@ -48,7 +41,7 @@
 	H.death(1)
 	return
 
-/turf/simulated/floor/plating/magmareal/Entered(AM)
+/turf/simulated/floor/plating/magmareal/Crossed(AM)
 	if(!istype(AM, /mob/living))
 		if(!istype(AM, /obj))
 			return
@@ -63,7 +56,6 @@
 	if(M.loc != src)
 		return
 	var/is_client_moving = (ismob(M) && M.client && M.client.moving)
-	//var/is_client_moving = (ismob(M) && M.client && M.client.moving)
 	if(M.throwing)
 		sleep(4)
 		spawn(0)

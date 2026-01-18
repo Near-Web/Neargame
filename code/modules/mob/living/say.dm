@@ -64,7 +64,7 @@ var/list/department_radio_keys = list(
 	if(!message)
 		return
 
-	if(findtext(lowertext(message), config.ic_filter_regex))
+	if(findtextEx(lowertext(message), config.ic_filter_regex))
 		sound_to(src, 'sound/vam_ban.ogg')
 		to_chat(src, "I SHOULDN'T HAVE SAID THAT!")
 		log_admin("[key_name(src)] just tried to say cringe")

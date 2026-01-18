@@ -371,7 +371,7 @@ emp_act
 				else
 					to_chat(user, "[pick(fnord)] There is nothing left in the pockets!")
 					return
-		if("vitals" || "groin")
+		if("vitals", "groin")
 			if(src.belt)
 				whatwillitsteal = src.belt
 				slot_it_will_go = belt
@@ -382,7 +382,7 @@ emp_act
 				else
 					to_chat(user, "[pick(fnord)] There is nothing left in the belt!")
 					return
-		if("l_hand" || "r_hand")
+		if("l_hand", "r_hand")
 			if(!src.gloves)
 				whatwillitsteal = src.wear_id
 				slot_it_will_go = slot_wear_id
@@ -409,3 +409,11 @@ emp_act
 	to_chat(user, "<span class='malfunction'>IT'S NOT HERE, STOLEN!</span>")
 	user << 'sound/lfwbsounds/stolen.ogg'
 	qdel(src)
+
+//Used to check if they can be fed food/drinks/pills
+/mob/living/carbon/human/proc/check_mouth_coverage()
+	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform)
+	for(var/obj/item/gear in protective_gear)
+		if(istype(gear) && (gear.body_parts_covered & FACE) && (gear.flags & (MASKCOVERSMOUTH|HEADCOVERSMOUTH)))
+			return gear
+	return null

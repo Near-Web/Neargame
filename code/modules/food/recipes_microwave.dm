@@ -83,7 +83,7 @@
 			human_name = HM.subjectname
 			human_job = HM.subjectjob
 			break
-		var/lastname_index = findtext(human_name, " ")
+		var/lastname_index = findtextEx(human_name, " ")
 		if (lastname_index)
 			human_name = copytext(human_name,lastname_index+1)
 
@@ -104,7 +104,7 @@
 /datum/recipe/donkpocket
 	items = list(
 		/obj/item/reagent_containers/food/snacks/doughslice,
-		/obj/item/reagent_containers/food/snacks/faggot,
+		/obj/item/reagent_containers/food/snacks/meatball,
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 	proc/warm_up(var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
@@ -554,7 +554,7 @@
 /datum/recipe/meatballsoup
 	reagents = list("water" = 10)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/faggot ,
+		/obj/item/reagent_containers/food/snacks/meatball ,
 		/obj/item/reagent_containers/food/snacks/grown/carrot,
 		/obj/item/reagent_containers/food/snacks/grown/potato,
 	)
@@ -818,10 +818,10 @@
 	reagents = list("water" = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/spagetti,
-		/obj/item/reagent_containers/food/snacks/faggot,
-		/obj/item/reagent_containers/food/snacks/faggot,
-		/obj/item/reagent_containers/food/snacks/faggot,
-		/obj/item/reagent_containers/food/snacks/faggot,
+		/obj/item/reagent_containers/food/snacks/meatball,
+		/obj/item/reagent_containers/food/snacks/meatball,
+		/obj/item/reagent_containers/food/snacks/meatball,
+		/obj/item/reagent_containers/food/snacks/meatball,
 	)
 	result = /obj/item/reagent_containers/food/snacks/spesslaw
 
@@ -829,10 +829,10 @@
 	reagents = list("water" = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/spagetti,
-		/obj/item/reagent_containers/food/snacks/faggot,
-		/obj/item/reagent_containers/food/snacks/faggot,
-		/obj/item/reagent_containers/food/snacks/faggot,
-		/obj/item/reagent_containers/food/snacks/faggot,
+		/obj/item/reagent_containers/food/snacks/meatball,
+		/obj/item/reagent_containers/food/snacks/meatball,
+		/obj/item/reagent_containers/food/snacks/meatball,
+		/obj/item/reagent_containers/food/snacks/meatball,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 	)
@@ -1022,7 +1022,7 @@
 
 /datum/recipe/sausage
 	items = list(
-		/obj/item/reagent_containers/food/snacks/faggot,
+		/obj/item/reagent_containers/food/snacks/meatball,
 		/obj/item/reagent_containers/food/snacks/cutlet,
 	)
 	result = /obj/item/reagent_containers/food/snacks/sausage
@@ -1122,7 +1122,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/reagent_containers/food/snacks/grown/potato,
-		/obj/item/reagent_containers/food/snacks/faggot,
+		/obj/item/reagent_containers/food/snacks/meatball,
 	)
 	result = /obj/item/reagent_containers/food/snacks/validsalad
 	make_food(var/obj/container as obj)
@@ -1192,7 +1192,7 @@
 	items = list(
 		/obj/item/reagent_containers/food/snacks/rawmeatball,
 	)
-	result = /obj/item/reagent_containers/food/snacks/faggot
+	result = /obj/item/reagent_containers/food/snacks/meatball
 
 
 

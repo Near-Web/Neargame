@@ -105,7 +105,7 @@
 		return pick(prob(2);/obj/item/reagent_containers/glass/bottle/whiskey,\
 					prob(2);/obj/item/folder,\
 					prob(3);/obj/item/flame/lighter/zippo,\
-					prob(2);/obj/item/dnainjector/hulkmut,\
+//					prob(2);/obj/item/dnainjector/hulkmut,
 					prob(3);/obj/item/desfibrilador,\
 					prob(5);/obj/item/crowbar,\
 					prob(3);/obj/item/storage/fancy/cigarettes,\

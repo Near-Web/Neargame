@@ -8,7 +8,7 @@
 	desc = "Looks like it's been here a while.  Eew."
 //	basecolor="#FFFFFF"
 //	color="#FFFFFF"
-	New()
+/obj/effect/decal/cleanable/blood/old/New()
 		..()
 		icon_state += "-old"
 
@@ -16,7 +16,7 @@
 	name = "old rotting gibs"
 	desc = "Oh god, why didn't anyone clean this up?  It smells terrible."
 //	basecolor="#FFFFFF"
-	New()
+/obj/effect/decal/cleanable/blood/gibs/old/New()
 		..()
 		icon_state += "-old"
 		dir = pick(1,2,4,8)
@@ -24,7 +24,7 @@
 /obj/effect/decal/cleanable/vomit/old
 	name = "crusty dried vomit"
 	desc = "You try not to look at the chunks, and fail."
-	New()
+/obj/effect/decal/cleanable/vomit/old/New()
 		..()
 		icon_state += "-old"
 
@@ -70,7 +70,7 @@
 		if(istype(A,/area/luna/maintenance))
 			if(prob(13))
 				new trash(src)
-	return
+			return
 
 	if(istype(A, /area/engine) || istype(A,/area/assembly) || istype(A,/area/luna/maintenance) || istype(A,/area/construction))
 		if(prob(35))

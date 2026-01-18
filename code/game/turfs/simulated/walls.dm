@@ -57,7 +57,6 @@
 					H.pixel_x = -11
 
 /turf/simulated/MouseDrop_T(mob/M as mob)
-	..()
 	if(M != usr) return
 	if(!Adjacent(usr)) return
 	if(!ishuman(M))

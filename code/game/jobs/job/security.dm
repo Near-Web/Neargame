@@ -19,17 +19,17 @@
 	money = 66
 	thanati_chance = 1
 	skill_mods = list(
-	list(SKILL_RANGE,5,5),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,2,2),
-	list(SKILL_CLIMB, 6),
-	list(SKILL_MEDIC,2,2),
-	list(SKILL_CLEAN,0),
-	list(SKILL_SWIM,4,5),
-	list(SKILL_OBSERV, 6,6),
-	list(SKILL_BOAT, 0),
+	alist(SKILL_RANGE,5,5),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,2,2),
+	alist(SKILL_CLIMB, 6),
+	alist(SKILL_MEDIC,2,2),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_SWIM,4,5),
+	alist(SKILL_OBSERV, 6,6),
+	alist(SKILL_BOAT, 0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -90,19 +90,19 @@
 	latejoin_locked = FALSE
 	thanati_chance = 1
 	skill_mods = list(
-	list(SKILL_MELEE,5,5),
-	list(SKILL_RANGE,4,4),
-	list(SKILL_UNARM,0,3),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,6,6),
-	list(SKILL_SWIM,4,5),
-	list(SKILL_OBSERV, 4,4),
-	list(SKILL_BOAT, 0),
+	alist(SKILL_MELEE,5,5),
+	alist(SKILL_RANGE,4,4),
+	alist(SKILL_UNARM,0,3),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,6,6),
+	alist(SKILL_SWIM,4,5),
+	alist(SKILL_OBSERV, 4,4),
+	alist(SKILL_BOAT, 0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -201,19 +201,19 @@
 	latejoin_locked = FALSE
 	thanati_chance = 10
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE,7,10),
-	list(SKILL_UNARM,1,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,2,2),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,2,2),
-	list(SKILL_MEDIC,3,3),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,5,5),
-	list(SKILL_SWIM,5,5),
-	list(SKILL_OBSERV, 4,5),
-	list(SKILL_BOAT, 0),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE,7,10),
+	alist(SKILL_UNARM,1,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,2,2),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,2,2),
+	alist(SKILL_MEDIC,3,3),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,5,5),
+	alist(SKILL_SWIM,5,5),
+	alist(SKILL_OBSERV, 4,5),
+	alist(SKILL_BOAT, 0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -254,20 +254,20 @@
 	jobdesc = "Still young, squires have yet to earn the right to call themselves Tritons. Serve your master well. Fit his armor, sharpen his blade, and he shall teach you how to become a man. And one day you too shall have the honor of serving directly under the Lord himself among your brothers. It is an honor to all young men."
 	latejoin_locked = FALSE
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE,2,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_UNARM,0,2),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,5,5),
-	list(SKILL_STEAL,2,2),
-	list(SKILL_SWIM,3,3),
-	list(SKILL_OBSERV, 2,2),
-	list(SKILL_BOAT, 0),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE,2,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_UNARM,0,2),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,5,5),
+	alist(SKILL_STEAL,2,2),
+	alist(SKILL_SWIM,3,3),
+	alist(SKILL_OBSERV, 2,2),
+	alist(SKILL_BOAT, 0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -353,19 +353,19 @@ var/global/Gatekeeper_Type = "Null"
 	thanati_chance = 1
 	jobdesc = " Gatekeeper to the Barons Fort. Dungeon Master. Armourer of the Triton Guard. The Charybdis is all of these at once. His nightly duty is to watch the keeps gates, ensuring the smerds dont just wander in when they please while letting the Tritons and nobility in and out as often as they want.  And who better to watch the Dungeon and guard the armory, than the one that has to sit atop both for hours on end?"
 	skill_mods = list(
-	list(SKILL_MELEE,5,5),
-	list(SKILL_RANGE,4,4),
-	list(SKILL_UNARM,0,3),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,6,6),
-	list(SKILL_SWIM,4,5),
-	list(SKILL_OBSERV, 4,4),
-	list(SKILL_BOAT, 0),
+	alist(SKILL_MELEE,5,5),
+	alist(SKILL_RANGE,4,4),
+	alist(SKILL_UNARM,0,3),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,6,6),
+	alist(SKILL_SWIM,4,5),
+	alist(SKILL_OBSERV, 4,4),
+	alist(SKILL_BOAT, 0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)

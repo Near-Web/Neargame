@@ -15,7 +15,7 @@
 			var/turf/T = get_turf(src)	//otherwise it won't work in hand
 			T.visible_message("\icon[src] beeps, \"Activation message is '[recorded]'.\"")
 		else
-			if(findtext(msg, recorded))
+			if(findtextEx(msg, recorded))
 				usr <<"*beep* *beep*"
 				pulse(0)
 

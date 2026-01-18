@@ -1,4 +1,4 @@
-/obj/structure/clothingbench 
+/obj/structure/clothingbench
 	name = "Tailor Bench"
 	desc = "A bench used to make clothes."
 	icon = 'icons/obj/objects.dmi'
@@ -15,15 +15,15 @@
 	var/fiberstock = 0
 	var/hatbase = 0
 
-	attack_hand(mob/user as mob)
-		if(!on)
-			for(var/obj/item/A in src.contents)
-				A.loc = src.loc
-		
-		else 
-			on = FALSE
-			update_icon()
-			playsound(src.loc, 'sound/effects/torch_snuff.ogg', 75, 0)
+/obj/structure/clothingbench/attack_hand(mob/user as mob)
+	if(!on)
+		for(var/obj/item/A in src.contents)
+			A.loc = src.loc
+
+	else
+		on = FALSE
+		update_icon()
+		playsound(src.loc, 'sound/effects/torch_snuff.ogg', 75, 0)
 
 /obj/structure/clothingbench/RightClick(mob/user)
 	var/end = input(user, "Choose your craft.") as null|anything in list("Smerd Clothes", "Garment Base", "Hat Base", "Fisher Hat", "Fine Coat", "Fancy Shoes")
@@ -38,7 +38,7 @@
 	if(on)
 		to_chat(user, "The bench is already in use.")
 		return
-	
+
 	if(istype(W, /obj/item/cloth))
 		clothstock += 1
 		qdel(W)
@@ -55,7 +55,7 @@
 		fiberstock += 1
 		qdel(W)
 		to_chat(user, "You add the fiber to the stack.")
-		
+
 
 	if(istype(W, /obj/item/surgery_tool/suture))
 		var/list/recipes = subtypesof(/datum/clothes_recipe)
@@ -77,11 +77,11 @@
 						new C.product(src.loc)
 						user.visible_message("<span class='passivebold'>[user]</span> <span class='passive'>finishes the item.</span>")
 						on = 0
-						return				
+						return
 				else
 					to_chat(user, "[pick(fnord)], there's not enough materials!")
-			
-/* OTHER STRUCTURES */			
+
+/* OTHER STRUCTURES */
 /obj/structure/loom
 	name = "spinning wheel"
 	desc = "A spinning wheel for refining raw materials into fabric and fiber."

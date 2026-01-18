@@ -75,7 +75,7 @@ var/list/area/dunwell_areas = list()
 		return
 
 	M.visible_message("<B>[M.name]</B> is locked on the [src] by [user]!")
-	playsound(src.loc, pick('lw_sacrificed1.ogg','lw_sacrificed2.ogg','lw_sacrificed3.ogg','lw_sacrificed4.ogg'), 60, 0, -1)
+	playsound(src.loc, pick('sound/LW2/lw_sacrificed1.ogg','sound/LW2/lw_sacrificed2.ogg','sound/LW2/lw_sacrificed3.ogg','sound/LW2/lw_sacrificed4.ogg'), 60, 0, -1)
 	M.buckled = src
 	M.loc = src.loc
 	M.dir = src.dir
@@ -125,7 +125,7 @@ var/list/area/dunwell_areas = list()
 	else
 		M.visible_message("<B>[M.name]</B> is locked on the [src]!")
 
-	playsound(src.loc, pick('lw_sacrificed1.ogg','lw_sacrificed2.ogg','lw_sacrificed3.ogg','lw_sacrificed4.ogg'), 60, 0, -1)
+	playsound(src.loc, pick('sound/LW2/lw_sacrificed1.ogg','sound/LW2/lw_sacrificed2.ogg','sound/LW2/lw_sacrificed3.ogg','sound/LW2/lw_sacrificed4.ogg'), 60, 0, -1)
 	M.buckled = src
 	M.loc = src.loc
 	M.dir = src.dir
@@ -215,7 +215,7 @@ ecross2
 		if("Check Status")
 			for(var/mob/living/carbon/human/H in AffectedArea)
 				if(H.lifeweb_locked)
-					var/blood_volume = round(H:vessel.get_reagent_amount("blood"))
+					var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
 					var/blood_percent =  blood_volume / 560
 					blood_percent *= 100
 					blood_percent = round(blood_percent)
@@ -240,7 +240,7 @@ ecross2
 //BATTERY CHARGER
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-obj/machinery/web_recharger
+/obj/machinery/web_recharger
 	name = "battery charger"
 	icon = 'LW2.dmi'
 	icon_state = "battery_station"
@@ -252,14 +252,14 @@ obj/machinery/web_recharger
 	var/obj/item/charging = null
 	var/powered = TRUE
 
-obj/machinery/web_recharger/examine()
+/obj/machinery/web_recharger/examine()
 	set src in view(1)
 	if(usr /*&& !usr.stat*/)
 		if(charging)
 			var/obj/item/cell/web/C = charging
 			usr << "[desc]\n The charge meter reads [round(C.percent() )]%."
 
-obj/machinery/web_recharger/attackby(obj/item/G as obj, mob/user as mob)
+/obj/machinery/web_recharger/attackby(obj/item/G as obj, mob/user as mob)
 	if(istype(G, /obj/item/cell/web))
 		if(charging)
 			return
@@ -273,7 +273,7 @@ obj/machinery/web_recharger/attackby(obj/item/G as obj, mob/user as mob)
 		src.icon_state = "battery_station_overlay"
 		src.underlays += G
 
-obj/machinery/web_recharger/attack_hand(mob/user as mob)
+/obj/machinery/web_recharger/attack_hand(mob/user as mob)
 	add_fingerprint(user)
 	var/obj/item/cell/web/C = charging
 
@@ -288,10 +288,10 @@ obj/machinery/web_recharger/attack_hand(mob/user as mob)
 		src.underlays -= C
 		src.underlays = null
 
-obj/machinery/web_recharger/attack_paw(mob/user)
+/obj/machinery/web_recharger/attack_paw(mob/user)
 	return attack_hand(user)
 
-obj/machinery/web_recharger/attack_tk(mob/user)
+/obj/machinery/web_recharger/attack_tk(mob/user)
 	var/obj/item/cell/web/C = charging
 
 	if(charging)
@@ -338,7 +338,7 @@ var/global/list/lifeweb_objects = list()
 				L.on = FALSE
 				L.update()
 
-obj/machinery/web_recharger/process()
+/obj/machinery/web_recharger/process()
 	var/area/AffectedArea = get_area(src)
 	for(var/obj/machinery/lifeweb/control/CONTROL in lifeweb_objects)
 		if(charging && CONTROL.draining)

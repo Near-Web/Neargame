@@ -375,7 +375,7 @@
 			for(var/client/C in group)
 				C.screen -= O
 
-datum/projectile_data
+/datum/projectile_data
 	var/src_x
 	var/src_y
 	var/time
@@ -462,3 +462,9 @@ datum/projectile_data
 		return TRUE
 
 	return FALSE //not in range and not telekinetic
+
+/proc/MinutesToTicks(var/minutes)
+	return SecondsToTicks(60 * minutes)
+
+/proc/SecondsToTicks(var/seconds)
+	return seconds * 10

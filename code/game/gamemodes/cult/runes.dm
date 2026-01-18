@@ -355,7 +355,7 @@ var/list/sacrificed = list()
 	var/chose_name = 0
 	for(var/obj/item/paper/P in this_rune.loc)
 		if(P.info)
-			D.real_name = copytext(P.info, findtext(P.info,">")+1, findtext(P.info,"<",2) )
+			D.real_name = copytext(P.info, findtextEx(P.info,">")+1, findtextEx(P.info,"<",2) )
 			chose_name = 1
 			break
 	if(!chose_name)

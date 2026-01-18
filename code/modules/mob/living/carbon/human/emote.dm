@@ -5,12 +5,12 @@
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null, var/cooldown = 0.5)
 	var/param = null
 
-	if (findtext(act, "-", 1, null))
-		var/t1 = findtext(act, "-", 1, null)
+	if (findtextEx(act, "-", 1, null))
+		var/t1 = findtextEx(act, "-", 1, null)
 		param = copytext(act, t1 + 1, length(act) + 1)
 		act = copytext(act, 1, t1)
 
-	if(findtext(act,"s",-1) && !findtext(act,"_",-2))//Removes ending s's  unless they are prefixed with a '_'
+	if(findtextEx(act,"s",-1) && !findtextEx(act,"_",-2))//Removes ending s's  unless they are prefixed with a '_'
 		act = copytext(act,1,length(act))
 
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
@@ -735,13 +735,13 @@
 					call_sound_emote("fart")
 					m_type = 2
 
-		if(("poo") || ("poop") || ("shit") || ("crap"))
+		if(("poo"), ("poop"), ("shit"), ("crap"))
 			handle_shit()
 
-		if(("pee") || ("urinate") || ("piss"))
+		if(("pee"), ("urinate"), ("piss"))
 			handle_piss()
 
-		if(("vomit") || ("puke") || ("throwup"))
+		if(("vomit"), ("puke"), ("throwup"))
 			if(ismonster(src))
 				return
 			else
@@ -766,9 +766,9 @@
 				return to_chat(src, "<span class='combatbold'>[pick(fnord)]</span><span class='combat'> I have clothes on.</span>")
 			if(src.w_uniform && !P.pants_down)
 				return to_chat(src, "<span class='combatbold'>[pick(fnord)]</span><span class='combat'> I have clothes on.</span>")
-			
+
 			src.doing_fuck = TRUE
-			
+
 			if(src.has_penis())
 				message = "<span class='examinebold'>[src]</span> <span class='examine'>[pick(nonolist)]</span>"
 				src.lust += 12
@@ -786,7 +786,7 @@
 					src.lust = 0
 				else
 					src.moan()
-					
+
 			// Add cooldown reset with same timer (2 deciseconds)
 			spawn(2)
 				src.doing_fuck = FALSE

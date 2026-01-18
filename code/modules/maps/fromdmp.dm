@@ -5,42 +5,42 @@
 	by Lummox JR
  */
 
-mob/verb/Convert(filename as file)
+/mob/verb/Convert(filename as file)
 	dmp2swapmap(filename)
 
-proc/d2sm_prepmap(filename)
+/proc/d2sm_prepmap(filename)
 	var/txt = file2text(filename)
 	if(!txt) return
 	var/i,j
-	i=findText(txt,ascii2text(13))	// eliminate carriage returns
+	i=findtextEx(txt,ascii2text(13))	// eliminate carriage returns
 	while(i)
 		txt=copytext(txt,1,i)+copytext(txt,i+1)
-		i=findText(txt,ascii2text(13),i)
-	i=findText(txt,"\\\n")
+		i=findtextEx(txt,ascii2text(13),i)
+	i=findtextEx(txt,"\\\n")
 	while(i)
 		for(j=i+2,j<=length(txt),++j) if(text2ascii(txt,j)>32) break
 		txt=copytext(txt,1,i)+copytext(txt,j)
-		i=findText(txt,"\\\n",i)
+		i=findtextEx(txt,"\\\n",i)
 	return txt
 
-proc/dmp2swapmap(filename)
+/proc/dmp2swapmap(filename)
 	//var/txt = file2text(filename)
 	//if(!txt) return
 	var/txt = d2sm_prepmap(filename)
 	var/mapname="[filename]"
 	var/i,j,k
-	i=findtext(mapname,".dmp")
-	while(i && i+4<length(mapname)) i=findtext(mapname,".dmp",i+1)
+	i=findtextEx(mapname,".dmp")
+	while(i && i+4<length(mapname)) i=findtextEx(mapname,".dmp",i+1)
 	mapname=copytext(mapname,1,i)
-	/* i=findText(txt,ascii2text(13))
+	/* i=findtextEx(txt,ascii2text(13))
 	while(i)
 		txt=copytext(txt,1,i)+copytext(txt,i+1)
-		i=findText(txt,ascii2text(13),i)
-	i=findText(txt,"\\\n")
+		i=findtextEx(txt,ascii2text(13),i)
+	i=findtextEx(txt,"\\\n")
 	while(i)
 		for(j=i+2,j<=length(txt),++j) if(text2ascii(txt,j)>32) break
 		txt=copytext(txt,1,i)+copytext(txt,j)
-		i=findText(txt,"\\\n",i) */
+		i=findtextEx(txt,"\\\n",i) */
 	var/list/codes=new
 	var/codelen=1
 	var/list/areas
@@ -54,14 +54,14 @@ proc/dmp2swapmap(filename)
 				return
 			// standard line:
 			// "a" = (/obj, /obj, /turf, /area)
-			i=findtext(txt,"\"",2)
+			i=findtextEx(txt,"\"",2)
 			var/code=copytext(txt,2,i)
 			codelen=length(code)
-			i=findtext(txt,"(",i)
+			i=findtextEx(txt,"(",i)
 			if(!i)
 				world << "Corrupt map file [filename]: No type list follows \"[code]\""
 				return
-			k=findtext(txt,"\n",++i)
+			k=findtextEx(txt,"\n",++i)
 			j=(k || length(txt+1))
 			while(--j>=i && text2ascii(txt,j)!=41)
 			if(j<i)
@@ -71,21 +71,25 @@ proc/dmp2swapmap(filename)
 			if(istext(L))
 				world << "Corrupt map file [filename]: [L]"
 				return
-			if(L.len<2)
+			if(length(L) < 2)
 				world << "Corrupt map file [filename]: Type list following \"[code]\" has only 1 item"
 				return
 			txt=k?copytext(txt,k+1):null
-			if(L[L.len] == "[world.area]") L[L.len]=0
+			if(L[length(L)] == "[world.area]")
+				L[length(L)] = 0
 			else
 				if(!areas) areas=list()
-				i=areas.Find(L[L.len])
-				if(i) L[L.len]=i
+				i = areas.Find(L[length(L)])
+				if(i)
+					L[length(L)] = i
 				else
-					areas+=L[L.len]
-					L[L.len]=areas.len
-			var/codetrans=d2sm_ConvertType(L[L.len-1],"\t\t\t\t")
-			if(L[L.len]) codetrans+="\t\t\t\tAREA = [L[L.len]]\n"
-			if(L.len>2) codetrans+=d2sm_Contents(L,L.len-2,"\t\t\t\t")
+					areas += L[length(L)]
+					L[length(L)] = length(areas)
+			var/codetrans = d2sm_ConvertType(L[length(L) - 1], "\t\t\t\t")
+			if(L[length(L)])
+				codetrans += "\t\t\t\tAREA = [L[length(L)]]\n"
+			if(length(L) > 2)
+				codetrans += d2sm_Contents(L, length(L) - 2, "\t\t\t\t")
 			codes[code]=copytext(codetrans,1,length(codetrans))
 		else if(text2ascii(txt)==40)
 			mode=40
@@ -96,13 +100,13 @@ proc/dmp2swapmap(filename)
 			// "}
 			i=d2sm_MatchBrace(txt,1,40)
 			if(!i)
-				world << "Corrupt map file [filename]: No matching ) for coordinates: [copytext(txt,1,findtext(txt,"\n"))]"
+				world << "Corrupt map file [filename]: No matching ) for coordinates: [copytext(txt,1,findtextEx(txt,"\n"))]"
 				return
 			var/list/coords=d2sm_ParseCommaList(copytext(txt,2,i))
-			if(istext(coords) || coords.len!=3)
+			if(istext(coords) || length(coords) != 3)
 				world << "Corrupt map file [filename]: [istext(coords)?(coords):"[copytext(txt,1,i+1)] is not a valid (x,y,z) coordinate"]"
 				return
-			j=findtext(txt,"{",i+1)
+			j=findtextEx(txt,"{",i+1)
 			if(!j)
 				world << "Corrupt map file [filename]: No braces {} following [copytext(txt,1,i+1)]"
 				return
@@ -111,15 +115,15 @@ proc/dmp2swapmap(filename)
 				world << "Corrupt map file [filename]: No closing brace } following [copytext(txt,1,i+1)]"
 				return
 			var/mtxt=copytext(txt,j+1,k)
-			if(findText(mtxt,"\"\n")!=1 || !findText(mtxt,"\n\"",length(mtxt)-1))
-				world << findText(mtxt,"\"\n")
-				world << findText(mtxt,"\n\"",length(mtxt)-1)
+			if(findtextEx(mtxt,"\"\n")!=1 || !findtextEx(mtxt,"\n\"",length(mtxt)-1))
+				world << findtextEx(mtxt,"\"\n")
+				world << findtextEx(mtxt,"\n\"",length(mtxt)-1)
 				world << "Corrupt map file [filename]: No quotes in braces following [copytext(txt,1,i+1)]"
 				return
 			mtxt=copytext(mtxt,2,length(mtxt))
 			var/_x=0,_y=0
 			for(i=1,,++_y)
-				j=findText(mtxt,"\n",i+1)
+				j=findtextEx(mtxt,"\n",i+1)
 				if(!j) break
 				_x=max(_x,(j-i-1)/codelen)
 				i=j
@@ -129,7 +133,7 @@ proc/dmp2swapmap(filename)
 			Z=max(Z,z)
 			txt=copytext(txt,k+1)
 		else
-			i=findtext(txt,"\n")
+			i=findtextEx(txt,"\n")
 			txt=i?copytext(txt,i+1):null
 	world << "Map size: [X],[Y],[Z]"
 	//for(var/code in codes)
@@ -139,10 +143,10 @@ proc/dmp2swapmap(filename)
 	F << ". = object(\".0\")\n.0\n\ttype = /swapmap\n\tid = \"[mapname]\"\n\tz = [Z]\n\ty = [Y]\n\tx = [X]"
 	if(areas)
 		txt=""
-		for(i=0,i<areas.len,++i)
+		for(i = 0, i < length(areas), ++i)
 			txt+="[i?", ":""]object(\".[i]\")"
 		F << "\tareas = list([txt])"
-		for(i=0,i<areas.len,++i)
+		for(i = 0, i < length(areas), ++i)
 			F << "\t\t.[i]"
 			txt=d2sm_ConvertType(areas[i+1],"\t\t\t")
 			F << copytext(txt,1,length(txt))
@@ -152,18 +156,18 @@ proc/dmp2swapmap(filename)
 	while(txt)
 		// skip all non-data sections
 		if(text2ascii(txt)!=40)
-			i=findText(txt,"\n")
+			i=findtextEx(txt,"\n")
 			if(i) txt=copytext(txt,i+1)
 			else txt=null
 			continue
 		i=d2sm_MatchBrace(txt,1,40)
 		var/list/coords=d2sm_ParseCommaList(copytext(txt,2,i))
-		j=findtext(txt,"{",i+1)
+		j=findtextEx(txt,"{",i+1)
 		k=d2sm_MatchBrace(txt,j,123)
 		var/mtxt=copytext(txt,j+2,k-1)
 		var/_x=0,_y=0
 		for(i=1,,++_y)
-			j=findText(mtxt,"\n",i+1)
+			j=findtextEx(mtxt,"\n",i+1)
 			if(!j) break
 			_x=max(_x,(j-i-1)/codelen)
 			i=j
@@ -187,7 +191,7 @@ proc/dmp2swapmap(filename)
 				F << "\t\t\t[x]"
 				F << codes[pick(codes)] */
 
-proc/d2sm_ParseCommaList(txt)
+/proc/d2sm_ParseCommaList(txt)
 	var/list/L=new
 	var/i,ch
 	for(i=1,i<=length(txt),++i)
@@ -205,7 +209,7 @@ proc/d2sm_ParseCommaList(txt)
 	if(i>1) L+=copytext(txt,1,i)
 	return L
 
-proc/d2sm_MatchBrace(txt, i, which)
+/proc/d2sm_MatchBrace(txt, i, which)
 	if(which==40) ++which
 	else which+=2
 	var/j,ch
@@ -216,8 +220,8 @@ proc/d2sm_MatchBrace(txt, i, which)
 			j=d2sm_MatchBrace(txt,j,ch)
 			if(!j) return 0
 
-proc/d2sm_ConvertType(tt,tabs="")
-	var/i=findText(tt,"{")
+/proc/d2sm_ConvertType(tt,tabs="")
+	var/i=findtextEx(tt,"{")
 	if(!i) return "[tabs]type = [tt]\n"
 	.="[tabs]type = [copytext(tt,1,i)]\n"
 	var/list/L=d2sm_ParseCommaList(copytext(tt,i+1,d2sm_MatchBrace(tt,i,123)))
@@ -225,7 +229,7 @@ proc/d2sm_ConvertType(tt,tabs="")
 	for(var/pair in L)
 		.="[.][tabs][pair]\n"
 
-proc/d2sm_Contents(list/conts,n,tabs="")
+/proc/d2sm_Contents(list/conts,n,tabs="")
 	.="[tabs]contents = list("
 	var/i
 	for(i=0,i<n,++i)

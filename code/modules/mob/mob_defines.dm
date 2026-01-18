@@ -126,6 +126,8 @@
 	var/timeofdeath = 0//Living
 	var/cpr_time = 1//Carbon
 
+	var/turf/listed_turf = null  	//the current turf being examined in the stat panel
+	var/list/shouldnt_see = list()	//list of objects that this mob shouldn't see in the stat panel. this silliness is needed because of AI alt+click and cult blood runes
 
 	var/bodytemperature = 310.055	//98.7 F
 	var/old_x = 0
@@ -136,6 +138,8 @@
 	var/is_dizzy = 0
 	var/is_jittery = 0
 	var/jitteriness = 0//Carbon
+	var/is_floating = 0
+	var/floatiness = 0
 	var/charges = 0
 	var/nutrition = 400//Carbon
 	var/hydration = THIRST_LEVEL_FILLED

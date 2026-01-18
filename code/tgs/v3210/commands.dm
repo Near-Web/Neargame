@@ -17,7 +17,7 @@
 			continue
 
 		var/command_name = initial(stc.name)
-		if(!command_name || findtext(command_name, " ") || findtext(command_name, "'") || findtext(command_name, "\""))
+		if(!command_name || findtextEx(command_name, " ") || findtextEx(command_name, "'") || findtextEx(command_name, "\""))
 			if(warnings_only && !warned_command_names[command_name])
 				TGS_ERROR_LOG("Custom command [command_name] can't be used as it is empty or contains illegal characters!")
 				warned_command_names[command_name] = TRUE
@@ -48,7 +48,7 @@
 
 	// Discord hack, fix the mention if it's only numbers (fuck you IRC trolls)
 	var/regex/discord_id_regex = regex("^\[0-9\]+$")
-	if(findtext(sender, discord_id_regex))
+	if(findtextEx(sender, discord_id_regex))
 		sender = "<@[sender]>"
 
 	user.mention = sender

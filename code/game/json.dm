@@ -56,11 +56,11 @@ proc/makejson()
 	var/text = file2text(dmepath)
 	var/path = "#include \"maps/[oldmap].dmm\""
 	var/xpath = "#include \"maps/[newpath].dmm\""
-	var/loc = findtext(text,path,1,0)
+	var/loc = findtextEx(text,path,1,0)
 	if(!loc)
 		path = "#include \"maps\\[oldmap].dmm\""
 		xpath = "#include \"maps\\[newpath].dmm\""
-		loc = findtext(text,path,1,0)
+		loc = findtextEx(text,path,1,0)
 		if(!loc)
 			message_admins("Could not find '#include \"maps\\[oldmap].dmm\"' or '\"maps/[oldmap].dmm\"' in the bs12.dme. The mapinfo probably has an incorrect mapname var. Alternatively, could not find the .dme itself, at [dmepath].")
 			return
@@ -70,7 +70,7 @@ proc/makejson()
 	text += "\n[xpath]"
 	text += rest
 /*	for(var/A in lines)
-		if(findtext(A,path,1,0))
+		if(findtextEx(A,path,1,0))
 			lineloc = lines.Find(A,1,0)
 			lines[lineloc] = xpath
 			world << "FOUND"*/

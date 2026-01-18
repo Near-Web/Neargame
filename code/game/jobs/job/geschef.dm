@@ -52,19 +52,19 @@
 	jobdesc = "Short for pressganger, you enjoy reminding yourself. Your lot is a simple one, making sure that the factory keeps running, your pockets stay filled and the worker numbers stay manageable, even if you need to do a little persuading. The Guildsman may not be your boss, but he might end up being your best friend as long as he keeps shipping out your goods and paying you. Without him? You always have the locals. Your latest orphan batch should keep the machines going, and if you take some casualties? Well, Bums and Migrants work just as well with enough quote-on-quote convincing."
 	thanati_chance = 70
 	skill_mods = list(
-	list(SKILL_MELEE,3,3),
-	list(SKILL_RANGE,2,2),
-	list(SKILL_UNARM,1,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_CLIMB, 4),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,1,2),
-	list(SKILL_SWIM,2,2),
-	list(SKILL_OBSERV, 2,2),
-	list(SKILL_BOAT, 0),
+	alist(SKILL_MELEE,3,3),
+	alist(SKILL_RANGE,2,2),
+	alist(SKILL_UNARM,1,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_CLIMB, 4),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,1,2),
+	alist(SKILL_SWIM,2,2),
+	alist(SKILL_OBSERV, 2,2),
+	alist(SKILL_BOAT, 0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)

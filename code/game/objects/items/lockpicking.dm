@@ -25,7 +25,8 @@ var/lockpick_break_sound = 'sound/effects/lockpick_break.ogg'
 	var/obj/item/lockpick = null
 	var/obj/structure/lockpickable = null
 	var/mob/living/M = null
-	New()
+
+/obj/screen/lockpicking/base/New()
 		var/obj/screen/lockpicking/interact/left/L = new ()
 		var/obj/screen/lockpicking/interact/right/R = new ()
 		var/obj/screen/lockpicking/interact/force/F = new ()
@@ -64,7 +65,7 @@ var/lockpick_break_sound = 'sound/effects/lockpick_break.ogg'
 		qdel(src)
 		return
 	else
-		return
+		return ..()
 
 
 /obj/screen/lockpicking/base/proc/DestroyFAKE()

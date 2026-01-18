@@ -110,7 +110,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		else
 			adminwho += ", [C]"
 
-	reason = sql_sanitize_text(reason)
+	reason = sanitize(reason)
 
 	if(maxadminbancheck)
 		var/DBQuery/adm_query = dbcon.NewQuery("SELECT count(id) AS num FROM erro_ban WHERE (a_ckey = '[a_ckey]') AND (bantype = 'ADMIN_PERMABAN'  OR (bantype = 'ADMIN_TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
@@ -132,7 +132,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 			qdel(banned_mob.client)
 
 
-datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
+/datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 	if(!check_rights(R_BAN))	return
 
@@ -205,7 +205,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 	DB_ban_unban_by_id(ban_id)
 
-datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
+/datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 
 	if(!check_rights(R_BAN))	return
 
@@ -229,14 +229,14 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 		usr << "Invalid ban id. Contact the database admin"
 		return
 
-	reason = sql_sanitize_text(reason)
+	reason = sanitize(reason)
 	var/value
 
 	switch(param)
 		if("reason")
 			if(!value)
 				value = input("Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null) as null|text
-				value = sql_sanitize_text(value)
+				value = sanitize(value)
 				if(!value)
 					usr << "Cancelled"
 					return
@@ -265,7 +265,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 			usr << "Cancelled"
 			return
 
-datum/admins/proc/DB_ban_unban_by_id(var/id)
+/datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	if(!check_rights(R_BAN))	return
 

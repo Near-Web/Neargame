@@ -7,12 +7,16 @@
 #define CANSTUN      BITFLAG(0)
 #define CANWEAKEN    BITFLAG(1)
 #define CANPARALYSE  BITFLAG(2)
+#define LEAPING		 BITFLAG(16)
 #define CANPUSH      BITFLAG(3)
 #define PASSEMOTES   BITFLAG(4) // Mob has a holder inside of it that need to see emotes.
+#define GOTTAGOFAST	 BITFLAG(64)
 #define GODMODE      BITFLAG(5)
 #define FAKEDEATH    BITFLAG(6)
 #define NO_ANTAG     BITFLAG(7) // Players are restricted from gaining antag roles when occupying this mob
+#define DISFIGURED	 BITFLAG(16384)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
 #define XENO_HOST	 BITFLAG(8)
+#define STATUS_NO_PAIN	BITFLAG(65536)
 
 // Grab levels.
 #define GRAB_PASSIVE    1
@@ -48,6 +52,12 @@
 #define PULSE_THREADY 5 // Occurs during hypovolemic shock
 #define GETPULSE_HAND 0 // Less accurate. (hand)
 #define GETPULSE_TOOL 1 // More accurate. (med scanner, sleeper, etc.)
+
+//feel free to add shit to lists below
+var/list/tachycardics = list("coffee", "inaprovaline", "hyperzine", "nitroglycerin", "thirteenloko", "nicotine")	//increase heart rate
+var/list/bradycardics = list("neurotoxin", "cryoxadone", "clonexadone", "space_drugs", "stoxin")					//decrease heart rate
+var/list/heartstopper = list("potassium_phorochloride", "zombie_powder") //this stops the heart
+var/list/cheartstopper = list("potassium_chloride") //this stops the heart when overdose is met -- c = conditional
 
 //intent flags, why wasn't this done the first time?
 #define I_HELP		"help"

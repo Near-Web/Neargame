@@ -507,11 +507,11 @@ var/list/slot_equipment_priority = list( \
 	set src in usr
 	if(usr != src)
 		usr << "No."
-	var/msg = input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",rhtml_decode_paper(flavor_text)) as message|null
+	var/msg = input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null
 
 	if(msg != null)
-//		msg = sanitize_uni(copytext(msg, 1, MAX_MESSAGE_LEN))
-		msg = rhtml_encode_paper(msg)
+		msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+		msg = rhtml_encode(msg)
 
 		flavor_text = msg
 
@@ -520,15 +520,14 @@ var/list/slot_equipment_priority = list( \
 		src << "<h2 class='alert'>OOC Warning:</h2>"
 		src << "<span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span>"
 
+
 /mob/proc/print_flavor_text()
-	if(flavor_text && flavor_text != "")
+	if (flavor_text && flavor_text != "")
 		var/msg = sanitize_uni(replacetext(flavor_text, "\n", " "))
 		if(length(msg) <= 40)
 			return "\blue [msg]"
 		else
 			return "\blue [copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
-	else
-		return 0
 
 /mob/verb/observe()
 	set name = "Observe"
@@ -789,6 +788,84 @@ note dizziness decrements automatically in the mob's Life() proc.
 	is_jittery = 0
 	pixel_x = old_x
 	pixel_y = old_y
+
+
+//handles up-down floaty effect in space
+/mob/proc/make_floating(var/n)
+
+	floatiness = n
+
+	if(floatiness && !is_floating)
+		start_floating()
+	else if(!floatiness && is_floating)
+		stop_floating()
+
+/mob/proc/start_floating()
+
+	is_floating = 1
+
+	var/amplitude = 2 //maximum displacement from original position
+	var/period = 36 //time taken for the mob to go up >> down >> original position, in deciseconds. Should be multiple of 4
+
+	var/top = old_y + amplitude
+	var/bottom = old_y - amplitude
+	var/half_period = period / 2
+	var/quarter_period = period / 4
+
+	animate(src, pixel_y = top, time = quarter_period, easing = SINE_EASING | EASE_OUT, loop = -1)		//up
+	animate(pixel_y = bottom, time = half_period, easing = SINE_EASING, loop = -1)						//down
+	animate(pixel_y = old_y, time = quarter_period, easing = SINE_EASING | EASE_IN, loop = -1)			//back
+
+/mob/proc/stop_floating()
+	animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING | EASE_IN) //halt animation
+	//reset the pixel offsets to zero
+	is_floating = 0
+
+
+
+/mob/Stat()
+	..()
+
+	if(client && client.holder)
+		if(statpanel("Status"))
+			stat(null,"Location:\t([x], [y], [z])")
+			stat(null,"CPU:\t[world.cpu]")
+			stat(null,"Instances:\t[world.contents.len]")
+
+		if(statpanel("MC") && master_controller)
+			stat(null,"MasterController-[last_tick_duration] ([master_controller.processing?"On":"Off"]-[controller_iteration])")
+			stat(null,"Air-[master_controller.air_cost]\tSun-[master_controller.sun_cost]")
+			stat(null,"Mob-[master_controller.mobs_cost]\t#[mob_list.len]")
+			stat(null,"Dis-[master_controller.diseases_cost]\t#[active_diseases.len]")
+			stat(null,"Mch-[master_controller.machines_cost]\t#[machines.len]")
+			stat(null,"Obj-[master_controller.objects_cost]\t#[processing_objects.len]")
+			stat(null,"Net-[master_controller.networks_cost]\tPnet-[master_controller.powernets_cost]")
+			stat(null,"NanoUI-[master_controller.nano_cost]\t#[nanomanager.processing_uis.len]")
+			stat(null,"Tick-[master_controller.ticker_cost]\tALL-[master_controller.total_cost]")
+		else
+			stat(null,"MasterController-ERROR")
+
+	if(listed_turf && client)
+		if(!TurfAdjacent(listed_turf))
+			listed_turf = null
+		else
+			statpanel(listed_turf.name, null, listed_turf)
+			for(var/atom/A in listed_turf)
+				if(A.invisibility > see_invisible)
+					continue
+				if(is_type_in_list(A, shouldnt_see))
+					continue
+				statpanel(listed_turf.name, null, A)
+
+	if(spell_list && spell_list.len)
+		for(var/obj/effect/proc_holder/spell/S in spell_list)
+			switch(S.charge_type)
+				if("recharge")
+					statpanel("Spells","[S.charge_counter/10.0]/[S.charge_max/10]",S)
+				if("charges")
+					statpanel("Spells","[S.charge_counter]/[S.charge_max]",S)
+				if("holdervar")
+					statpanel("Spells","[S.holder_var_type] [S.holder_var_amount]",S)
 
 
 // facing verbs

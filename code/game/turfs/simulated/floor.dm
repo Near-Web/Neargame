@@ -114,9 +114,7 @@ var/list/wood_icons = list("wood","wood-broken")
 				src.hotspot_expose(1000,CELL_VOLUME)
 	return
 
-/turf/simulated/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	return //LOCKADO
-
+/turf/simulated/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)//LOCKADO
 	if(!burnt && prob(5))
 		burn_tile()
 	else if(prob(1) && !is_plating())
@@ -138,7 +136,7 @@ var/list/wood_icons = list("wood","wood-broken")
 		if(prob(howmany/2))
 			M.stumble(0, src, "\the [src] is clustered, you stumble.")
 */
-turf/simulated/floor/proc/update_icon()
+/turf/simulated/floor/proc/update_icon()
 	if(lava)
 		return
 	else if(is_plasteel_floor())

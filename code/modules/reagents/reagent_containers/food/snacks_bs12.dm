@@ -346,7 +346,7 @@
 
 /obj/item/reagent_containers/food/snacks/bun/attackby(obj/item/W as obj, mob/user as mob)
 	// Bun + meatball = burger
-	if(istype(W,/obj/item/reagent_containers/food/snacks/faggot))
+	if(istype(W,/obj/item/reagent_containers/food/snacks/meatball))
 		var/turf/spawnloc = foodloc(user, src)
 		new /obj/item/reagent_containers/food/snacks/burger(spawnloc)
 		user << "You make a burger."
@@ -413,7 +413,7 @@
 
 // Sauced spaghetti + meatball = sauced spaghetti with meatballs
 /obj/item/reagent_containers/food/snacks/sspaghetti/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/reagent_containers/food/snacks/faggot))
+	if(istype(W,/obj/item/reagent_containers/food/snacks/meatball))
 		var/turf/spawnloc = foodloc(user, src)
 		new /obj/item/reagent_containers/food/snacks/smeatspaghetti(spawnloc)
 		user << "You add meatballs to sauced spaghetti."

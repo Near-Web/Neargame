@@ -70,14 +70,14 @@
 /mob/proc/update_targeted()
 	return
 
-mob/proc/update_wrist_r()
+/mob/proc/update_wrist_r()
 	return
 
-mob/proc/update_wrist_l()
+/mob/proc/update_wrist_l()
 	return
 
-mob/proc/update_amulet()
+/mob/proc/update_amulet()
 	return
 
-mob/proc/update_back2()
+/mob/proc/update_back2()
 	return

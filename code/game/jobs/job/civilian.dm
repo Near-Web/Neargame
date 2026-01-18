@@ -43,19 +43,19 @@
 	sex_lock = MALE
 	minimal_character_age = 25
 	skill_mods = list(
-	list(SKILL_MELEE,5,5),
-	list(SKILL_RANGE,6,6),
-	list(SKILL_UNARM,0,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0,3),
-	list(SKILL_MEDIC,1,4),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,0),
-	list(SKILL_STEAL,2,2),
-	list(SKILL_OBSERV, 3,3),
-	list(SKILL_BOAT, 0),
+	alist(SKILL_MELEE,5,5),
+	alist(SKILL_RANGE,6,6),
+	alist(SKILL_UNARM,0,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0,3),
+	alist(SKILL_MEDIC,1,4),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,0),
+	alist(SKILL_STEAL,2,2),
+	alist(SKILL_OBSERV, 3,3),
+	alist(SKILL_BOAT, 0),
 	)
 
 	equip(var/mob/living/carbon/human/H)
@@ -114,19 +114,19 @@
 	sex_lock = FEMALE
 	no_trapoc = TRUE // Necessary
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE, 2,2),
-	list(SKILL_FARM,3,3),
-	list(SKILL_COOK,7,9),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,2,2),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN, 3),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_OBSERV, 2,2),
-	list(SKILL_RIDE,5,10),
-	list(SKILL_PARTY,3,5),
-	list(SKILL_STEAL,2,4),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE, 2,2),
+	alist(SKILL_FARM,3,3),
+	alist(SKILL_COOK,7,9),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,2,2),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN, 3),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_OBSERV, 2,2),
+	alist(SKILL_RIDE,5,10),
+	alist(SKILL_PARTY,3,5),
+	alist(SKILL_STEAL,2,4),
 	)
 
 	equip(var/mob/living/carbon/human/H)
@@ -165,16 +165,16 @@
 	money = 27
 	sex_lock = MALE
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE,2,2),
-	list(SKILL_FARM,4,4),
-	list(SKILL_COOK,5,5),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,2,2),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_MEDIC,2,2),
-	list(SKILL_CLEAN,4,4),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE,2,2),
+	alist(SKILL_FARM,4,4),
+	alist(SKILL_COOK,5,5),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,2,2),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_MEDIC,2,2),
+	alist(SKILL_CLEAN,4,4),
+	alist(SKILL_OBSERV, 2,2),
 	)
 
 	equip(var/mob/living/carbon/human/H)
@@ -210,17 +210,17 @@
 	sex_lock = FEMALE
 	money = 25
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,1,1),
-	list(SKILL_FARM,4,4),
-	list(SKILL_COOK,5,5),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,2,2),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_MEDIC,2,2),
-	list(SKILL_CLEAN,5,6),
-	list(SKILL_MUSIC, 0),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,1,1),
+	alist(SKILL_FARM,4,4),
+	alist(SKILL_COOK,5,5),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,2,2),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_MEDIC,2,2),
+	alist(SKILL_CLEAN,5,6),
+	alist(SKILL_MUSIC, 0),
+	alist(SKILL_OBSERV, 2,2),
 	)
 
 	equip(var/mob/living/carbon/human/H)
@@ -252,17 +252,17 @@
 	jobdesc = "A heretic miracle worker who&#8217;s usefulness to the residents of the fortress has granted them temporary amnesty from execution. Said to belong to the Cult of Cons, the Consytes and some unknowing residents refer to him as the &#8217;Prophet&#8217; - blasphemy, if you&#8217;ve ever heard it. Able to receive and recite visions in great detail before they happen, the Vicar often dissuades any acknowledgement to these &#8217;Truths&#8217;. But sometimes you can&#8217;t help but feel its not a coincidence..."
 	jobdescbr = "A heretic miracle worker who&#8217;s usefulness to the residents of the fortress has granted them temporary amnesty from execution. Said to belong to the Cult of Cons, the Consytes and some unknowing residents refer to him as the &#8217;Prophet&#8217; - blasphemy, if you&#8217;ve ever heard it. Able to receive and recite visions in great detail before they happen, the Vicar often dissuades any acknowledgement to these &#8217;Truths&#8217;. But sometimes you can&#8217;t help but feel its not a coincidence..."
 	skill_mods = list(
-	list(SKILL_MELEE,5,5),
-	list(SKILL_RANGE,0),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,3,3),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,2,2),
-	list(SKILL_MEDIC,2,2),
-	list(SKILL_CLEAN,2,2),
-	list(SKILL_CLIMB,3,3),
-	list(SKILL_SWIM,2,2),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,5,5),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,3,3),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,2,2),
+	alist(SKILL_MEDIC,2,2),
+	alist(SKILL_CLEAN,2,2),
+	alist(SKILL_CLIMB,3,3),
+	alist(SKILL_SWIM,2,2),
+	alist(SKILL_OBSERV, 2,2),
 	)
 
 	equip(var/mob/living/carbon/human/H)
@@ -319,12 +319,12 @@
 		consyte_voice = sanitize(input("Choose a name for the choir.","[src.real_name]",consyte_voice))
 		if(!consyte_voice)
 			return
-		if(findtext(consyte_voice, "http"))
+		if(findtextEx(consyte_voice, "http"))
 			return
 	var/consytemessage = sanitize(input("CHOIR!","[src.consyte_voice]") as message)
 	if(!consytemessage)
 		return
-	if(findtext(consytemessage, "http"))
+	if(findtextEx(consytemessage, "http"))
 		return
 	for(var/mob/living/carbon/human/L in player_list)
 		if(L.consyte)
@@ -346,18 +346,18 @@
 	jobdesc = "Lost street kids are littered among the homeless in Enoch&#8217;s Gate. Often starting an early life of crime, they are malleable to the influences of the more opportunistic residents. Downtrodden and without a home to return to, they often find themselves turning to the local consyte for shelter and food."
 	jobdescbr = "Lost street kids are littered among the homeless in Enoch&#8217;s Gate. Often starting an early life of crime, they are malleable to the influences of the more opportunistic residents. Downtrodden and without a home to return to, they often find themselves turning to the local consyte for shelter and food."
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,0),
-	list(SKILL_KNIFE,0,1),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,5,5),
-	list(SKILL_STEAL,3,3),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_KNIFE,0,1),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,5,5),
+	alist(SKILL_STEAL,3,3),
+	alist(SKILL_OBSERV, 2,2),
 	)
 
 	equip(var/mob/living/carbon/human/H)
@@ -412,19 +412,19 @@
 	jobdesc = "A veteran of the streets, you&#8217;ve lived and breathed them all your life. The rancid smell of the sewers is now numb to your senses and you&#8217;ve survived off the pickings of the dead vermin you find in the dark alleyways. People think you&#8217;re dirt - but the streets have changed you, and you know the truth."
 	jobdescbr = "Você perdeu uma vida decente, o respeito da sociedade e sua própria mente, e não se arrepende de nada. Hoje à noite alguém vai te matar só por diversão."
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,0),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0,2),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,3,5),
-	list(SKILL_STEAL,1,3),
-	list(SKILL_SWIM,0),
-	list(SKILL_UNARM,0,1),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0,2),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,3,5),
+	alist(SKILL_STEAL,1,3),
+	alist(SKILL_SWIM,0),
+	alist(SKILL_UNARM,0,1),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -512,14 +512,14 @@
 	latejoin_locked = FALSE
 	thanati_chance = 12
 	skill_mods = list(
-	list(SKILL_MELEE,4,4),
-	list(SKILL_RANGE,2,2),
-	list(SKILL_UNARM,0,2),
-	list(SKILL_CLIMB,3,4),
-	list(SKILL_SWIM,2,3),
-	list(SKILL_OBSERV, 3,3),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
+	alist(SKILL_MELEE,4,4),
+	alist(SKILL_RANGE,2,2),
+	alist(SKILL_UNARM,0,2),
+	alist(SKILL_CLIMB,3,4),
+	alist(SKILL_SWIM,2,3),
+	alist(SKILL_OBSERV, 3,3),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -762,7 +762,7 @@
 			return
 
 		log_game("([src.ckey])[src.real_name] gave ([M.ckey])[M.real_name] the nickname: [responseTwo]")
-		if(findtext(responseTwo, config.ic_filter_regex))
+		if(findtextEx(responseTwo, config.ic_filter_regex))
 			src << 'sound/vam_ban.ogg'
 			to_chat("THAT'S SO FUNNY!")
 			var/datum/organ/internal/heart/HE = (locate() in internal_organs)
@@ -908,7 +908,7 @@
 	var/howfunny = 1 //it was funny. laugh
 	if(length(the_joke) > 73)
 		howfunny++
-	if(findtext(the_joke, funnywords))
+	if(findtextEx(the_joke, funnywords))
 		howfunny++
 
 
@@ -968,20 +968,20 @@
 	thanati_chance = 75
 	money = 5
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RIDE,10,10),
-	list(SKILL_RANGE,0),
-	list(SKILL_UNARM,0,2),
-	list(SKILL_FARM,10,11),
-	list(SKILL_COOK,2,2),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_SWIM,2,2),
-	list(SKILL_OBSERV, 2,2),
-	list(SKILL_TAN, 4,6),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RIDE,10,10),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_UNARM,0,2),
+	alist(SKILL_FARM,10,11),
+	alist(SKILL_COOK,2,2),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_SWIM,2,2),
+	alist(SKILL_OBSERV, 2,2),
+	alist(SKILL_TAN, 4,6),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -1020,17 +1020,17 @@
 	thanati_chance = 33
 	jobdesc = "A newcomer from somewhere far from the South, rumors say hes the scion of a wealthy merchant family from Gahan, but ever since opening up their trade post they havent confirmed or denied these claims. Buy wholesale and foist! Not everyone in Enoch&#8217;s Gate has money to pay at your premium prices. You could still give these losers tasks in exchange for a discount."
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE,5,5),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,2,2),
-	list(SKILL_MEDIC,2,2),
-	list(SKILL_CLEAN,2,2),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_OBSERV, 3,3),
-	list(SKILL_BOAT, 0),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE,5,5),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,2,2),
+	alist(SKILL_MEDIC,2,2),
+	alist(SKILL_CLEAN,2,2),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_OBSERV, 3,3),
+	alist(SKILL_BOAT, 0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -1068,19 +1068,19 @@
 	jobdescbr = "Hired by the Merchant for manual labor, you work their shop and docks by assisting them with unloading their goods from the barge and ensuring they don&#8217;t have to do physical duties. Do it well enough and your boss may be gracious enough to pay you."
 	thanati_chance = 70
 	skill_mods = list(
-	list(SKILL_MELEE,3,3),
-	list(SKILL_RANGE,2,2),
-	list(SKILL_UNARM,1,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_CLIMB, 4),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,1,2),
-	list(SKILL_SWIM,2,2),
-	list(SKILL_OBSERV, 2,2),
-	list(SKILL_BOAT, 0),
+	alist(SKILL_MELEE,3,3),
+	alist(SKILL_RANGE,2,2),
+	alist(SKILL_UNARM,1,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_CLIMB, 4),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,1,2),
+	alist(SKILL_SWIM,2,2),
+	alist(SKILL_OBSERV, 2,2),
+	alist(SKILL_BOAT, 0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -1153,22 +1153,22 @@
 	jobdesc = "The lady of the night, a seductress who welcomes men into her soft embrace for coin. The pusher is your pimp, and he&#8217;s expecting a cut of the earnings. Enticing men these nights is not that hard - nights get dreary and lonely after all, but with the increased presence of the Vicar&#8217;s henchmen, you&#8217;ve noticed your frequent visitors become strangely chaste in your presence."
 	jobdescbr = "Após a chegada da Inquisição, os homens da fortaleza tornaram-se subitamente ... assexuados. Eles têm medo de uma reeducação que agrada a Deus e incapacitante ou apenas se sublimam em fanatismo, intrigas e expectativa de uma matança? De qualquer forma, você deve se esforçar para lembrá-los de simples alegrias corporais."
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,0),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_RIDE,5,10),
-	list(SKILL_PARTY,3,5),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,8,8),
-	list(SKILL_STEAL,2,4),
-	list(SKILL_SWIM,0),
-	list(SKILL_MUSIC, 0),
-	list(SKILL_KNIFE,0,2),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_RIDE,5,10),
+	alist(SKILL_PARTY,3,5),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,8,8),
+	alist(SKILL_STEAL,2,4),
+	alist(SKILL_SWIM,0),
+	alist(SKILL_MUSIC, 0),
+	alist(SKILL_KNIFE,0,2),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -1209,18 +1209,18 @@
 	jobdesc = "A street urchin caught up under the pusher&#8217;s influence. He gets you to do menial jobs he can&#8217;t be caught doing, like nicking the jingling bags around people&#8217;s necks and working your way into people&#8217;s pockets. He promises you compensation, too. Sometimes you get your share."
 	minimal_access = list(brothel, amuser)
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE,2,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,0),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_KNIFE,0,3),
-	list(SKILL_CLEAN,2,2),
-	list(SKILL_CLIMB,5,5),
-	list(SKILL_STEAL,6,8),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE,2,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,0),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_KNIFE,0,3),
+	alist(SKILL_CLEAN,2,2),
+	alist(SKILL_CLIMB,5,5),
+	alist(SKILL_STEAL,6,8),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -1255,19 +1255,19 @@
 	thanati_chance = 75
 	jobdesc = "The new owner of The Old Cock Inn, the perfect front for your den of vices and a good way to draw people in, after all, you know practically everyone and get to hear rumors from those temporarily passing through Enoch&#8217;s Gate, you even get money from anyone not interested in your downstairs merchandise. Those who come by the den to purchase your blood plungers range from nobility to dirt, and you&#8217;re here to sell them sex and indulge in all of their immoral hedonism. You hear the kids calling you the coolest person in the fortress, and you make sure that the obol-less bums spend it on a hit once it finally looks like they&#8217;ve made some dough. You&#8217;re looked up to by scoundrels and vermin, and are a target for those looking to challenge your drug trade. You won&#8217;t let that happen."
 	skill_mods = list(
-	list(SKILL_MELEE,4,4),
-	list(SKILL_RANGE,2,2),
-	list(SKILL_UNARM, 0,2),
-	list(SKILL_FARM,1,2),
-	list(SKILL_COOK,7,9),
-	list(SKILL_ENGINE,0),
-	list(SKILL_CLIMB,3,3),
-	list(SKILL_SURG,2,3),
-	list(SKILL_MEDIC,2,3),
-	list(SKILL_CLEAN,1,2),
-	list(SKILL_PARTY, 6,7),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,4,4),
+	alist(SKILL_RANGE,2,2),
+	alist(SKILL_UNARM, 0,2),
+	alist(SKILL_FARM,1,2),
+	alist(SKILL_COOK,7,9),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_CLIMB,3,3),
+	alist(SKILL_SURG,2,3),
+	alist(SKILL_MEDIC,2,3),
+	alist(SKILL_CLEAN,1,2),
+	alist(SKILL_PARTY, 6,7),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -1351,17 +1351,17 @@
 	jobdescbr = "Proven too dumb to be a mortus, the misero cannot work the lifeweb. Instead, he cleans up after the mortii, keeps the streets washed, and deals with the burial of the deceased in the graveyard."
 	thanati_chance = 75
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE,0),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,2,2),
-	list(SKILL_ENGINE,0),
-	list(SKILL_CLEAN,6,8),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_SWIM,0),
-	list(SKILL_UNARM,0,2),
-	list(SKILL_SWING,0,2),
-	list(SKILL_OBSERV, 0),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,2,2),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_CLEAN,6,8),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_SWIM,0),
+	alist(SKILL_UNARM,0,2),
+	alist(SKILL_SWING,0,2),
+	alist(SKILL_OBSERV, 0),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -1399,19 +1399,19 @@
 	latejoin_locked = FALSE
 	thanati_chance = 75
 	skill_mods = list(
-	list(SKILL_MELEE,2,2),
-	list(SKILL_RANGE, 2,2),
-	list(SKILL_FARM,0),
-	list(SKILL_COOK,2,2),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_PARTY,0),
-	list(SKILL_SWIM,2,2),
-	list(SKILL_MUSIC, 0),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,2,2),
+	alist(SKILL_RANGE, 2,2),
+	alist(SKILL_FARM,0),
+	alist(SKILL_COOK,2,2),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_PARTY,0),
+	alist(SKILL_SWIM,2,2),
+	alist(SKILL_MUSIC, 0),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -1609,17 +1609,17 @@
 	money = 13
 	sex_lock = MALE
 	skill_mods = list(
-	list(SKILL_MELEE,3,3),
-	list(SKILL_KNIFE,2,3),
-	list(SKILL_RANGE,4,4),
-	list(SKILL_FARM,2,2),
-	list(SKILL_COOK,7,9),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0,1),
-	list(SKILL_MEDIC,0),
-	list(SKILL_CLEAN,1,2),
-	list(SKILL_CLIMB,2,2),
-	list(SKILL_OBSERV,2,2),
+	alist(SKILL_MELEE,3,3),
+	alist(SKILL_KNIFE,2,3),
+	alist(SKILL_RANGE,4,4),
+	alist(SKILL_FARM,2,2),
+	alist(SKILL_COOK,7,9),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0,1),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_CLEAN,1,2),
+	alist(SKILL_CLIMB,2,2),
+	alist(SKILL_OBSERV,2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
@@ -1652,21 +1652,21 @@
 	money = 3
 	jobdesc = "A kindly woman living in The Burrows who&#8217;s known to the residents for her uncanny foresight and lucky charms. Surely it&#8217;s all just innocent superstition..Right?"
 	skill_mods = list(
-	list(SKILL_MELEE,0),
-	list(SKILL_RANGE,0),
-	list(SKILL_ALCH,6,8),
-	list(SKILL_FARM,4),
-	list(SKILL_COOK,4),
-	list(SKILL_ENGINE,0),
-	list(SKILL_SURG,0),
-	list(SKILL_MEDIC,0),
-	list(SKILL_RIDE,0),
-	list(SKILL_PARTY,0),
-	list(SKILL_CLEAN,0),
-	list(SKILL_SWIM,0),
-	list(SKILL_MUSIC, 3),
-	list(SKILL_KNIFE,0,1),
-	list(SKILL_OBSERV, 2,2),
+	alist(SKILL_MELEE,0),
+	alist(SKILL_RANGE,0),
+	alist(SKILL_ALCH,6,8),
+	alist(SKILL_FARM,4),
+	alist(SKILL_COOK,4),
+	alist(SKILL_ENGINE,0),
+	alist(SKILL_SURG,0),
+	alist(SKILL_MEDIC,0),
+	alist(SKILL_RIDE,0),
+	alist(SKILL_PARTY,0),
+	alist(SKILL_CLEAN,0),
+	alist(SKILL_SWIM,0),
+	alist(SKILL_MUSIC, 3),
+	alist(SKILL_KNIFE,0,1),
+	alist(SKILL_OBSERV, 2,2),
 	)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)
